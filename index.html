@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BUKU SAKU PAJAK — KPP Pratama Denpasar Barat</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        google: {
+                            blue: '#1a73e8',
+                            red: '#ea4335',
+                            yellow: '#fbbc04',
+                            green: '#34a853',
+                            grayBg: '#f8f9fa',
+                            textPrimary: '#202124',
+                            textSec: '#5f6368',
+                            border: '#e8eaed'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Roboto', '-apple-system', 'BlinkMacSystemFont', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #202124;
+            background-color: #f8f9fa;
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex justify-center items-start antialiased selection:bg-blue-100">
+
+    <!-- Container Utama (Format Layar HP / Mobile Portrait) -->
+    <div class="w-full max-w-md bg-white min-h-screen shadow-lg border-x border-google-border flex flex-col justify-between">
+        
+        <div>
+            <!-- Header Ringkas dengan Judul Diperbesar & Nama KPP -->
+            <header class="sticky top-0 z-10 bg-white border-b border-google-border px-5 py-4 flex items-center justify-between shadow-xs">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-google-blue flex items-center justify-center text-white font-black text-xl shadow-md">
+                        P
+                    </div>
+                    <div>
+                        <!-- Tulisan BUKU SAKU PAJAK Diperbesar -->
+                        <h1 class="text-xl font-black tracking-tight text-google-textPrimary leading-none uppercase">
+                            BUKU SAKU PAJAK
+                        </h1>
+                        <p class="text-[11px] text-google-blue font-semibold mt-1">
+                            KPP Pratama Denpasar Barat
+                        </p>
+                    </div>
+                </div>
+                <span class="text-[10px] bg-emerald-50 text-emerald-700 font-bold px-2.5 py-1 rounded-full border border-emerald-200">
+                    2026
+                </span>
+            </header>
+
+            <main class="px-5 py-5 space-y-6">
+
+                <!-- Judul Utama Halaman & Instansi Penerbit -->
+                <div class="text-left pt-1">
+                    <h2 class="text-xl font-bold text-google-textPrimary">Kalender & Pasal Pajak</h2>
+                    <p class="text-xs text-google-textSec mt-1">
+                        Panduan rutin penyetoran, pelaporan, dan aturan pasal perpajakan utama.
+                    </p>
+                    <div class="mt-2.5 inline-block bg-blue-50/80 border border-blue-100 rounded-lg px-3 py-1.5">
+                        <p class="text-[11px] font-medium text-google-blue">
+                            Dibuat dan diterbitkan oleh <strong>KPP Pratama Denpasar Barat</strong>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Bagian 1: Kalender Pajak Bulanan -->
+                <section class="space-y-3">
+                    <div class="flex items-center justify-between border-b border-google-border pb-2">
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-google-textSec flex items-center">
+                            <span class="w-2 h-2 rounded-full bg-google-blue mr-2"></span>
+                            Jadwal Jatuh Tempo Bulanan
+                        </h3>
+                    </div>
+
+                    <!-- List Kalender Vertikal -->
+                    <div class="space-y-2.5">
+                        
+                        <!-- Tgl 10 -->
+                        <div class="p-3.5 rounded-xl border border-google-border bg-white flex items-start space-x-3.5">
+                            <div class="flex-shrink-0 w-12 text-center py-1 rounded-lg bg-blue-50 border border-blue-100">
+                                <span class="block text-xs font-semibold text-google-blue uppercase">TGL</span>
+                                <span class="block text-lg font-bold text-google-blue leading-none">10</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center justify-between mb-0.5">
+                                    <h4 class="text-xs font-bold text-google-textPrimary">PPh Dipotong / Dipungut</h4>
+                                    <span class="text-[9px] font-bold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SETOR</span>
+                                </div>
+                                <p class="text-[11px] text-google-textSec leading-snug">
+                                    Batas penyetoran PPh 21/26, PPh 23, PPh 22, dan PPh 4(2) Final.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Tgl 15 -->
+                        <div class="p-3.5 rounded-xl border border-google-border bg-white flex items-start space-x-3.5">
+                            <div class="flex-shrink-0 w-12 text-center py-1 rounded-lg bg-amber-50 border border-amber-100">
+                                <span class="block text-xs font-semibold text-amber-600 uppercase">TGL</span>
+                                <span class="block text-lg font-bold text-amber-600 leading-none">15</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center justify-between mb-0.5">
+                                    <h4 class="text-xs font-bold text-google-textPrimary">PPh Setor Sendiri & UMKM</h4>
+                                    <span class="text-[9px] font-bold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded">SETOR</span>
+                                </div>
+                                <p class="text-[11px] text-google-textSec leading-snug">
+                                    Batas setor Angsuran PPh 25 & PPh Final UMKM 0,5% (PP 55/2022).
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Tgl 20 -->
+                        <div class="p-3.5 rounded-xl border border-indigo-200 bg-indigo-50/30 flex items-start space-x-3.5">
+                            <div class="flex-shrink-0 w-12 text-center py-1 rounded-lg bg-indigo-100 border border-indigo-200">
+                                <span class="block text-xs font-semibold text-indigo-700 uppercase">TGL</span>
+                                <span class="block text-lg font-bold text-indigo-700 leading-none">20</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center justify-between mb-0.5">
+                                    <h4 class="text-xs font-bold text-google-textPrimary">Upload e-Faktur & Lapor PPh</h4>
+                                    <span class="text-[9px] font-bold text-indigo-700 bg-indigo-100 px-1.5 py-0.5 rounded">UPLOAD & LAPOR</span>
+                                </div>
+                                <p class="text-[11px] text-google-textSec leading-snug">
+                                    Batas upload e-Faktur (PER-11/PJ/2025) & lapor SPT Masa PPh 21, 23, 22, 4(2).
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Akhir Bulan -->
+                        <div class="p-3.5 rounded-xl border border-google-border bg-white flex items-start space-x-3.5">
+                            <div class="flex-shrink-0 w-12 text-center py-1 rounded-lg bg-emerald-50 border border-emerald-100">
+                                <span class="block text-[9px] font-semibold text-google-green uppercase">AKHIR</span>
+                                <span class="block text-xs font-bold text-google-green leading-tight">BULAN</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center justify-between mb-0.5">
+                                    <h4 class="text-xs font-bold text-google-textPrimary">SPT Masa PPN</h4>
+                                    <span class="text-[9px] font-bold text-google-green bg-emerald-50 px-1.5 py-0.5 rounded">SETOR & LAPOR</span>
+                                </div>
+                                <p class="text-[11px] text-google-textSec leading-snug">
+                                    Batas penyetoran PPN Kurang Bayar dan pelaporan SPT Masa PPN.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- Bagian 2: Pasal Pajak Utama -->
+                <section class="space-y-3 pt-2">
+                    <div class="flex items-center justify-between border-b border-google-border pb-2">
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-google-textSec flex items-center">
+                            <span class="w-2 h-2 rounded-full bg-google-green mr-2"></span>
+                            Kewajiban Pasal Utama
+                        </h3>
+                    </div>
+
+                    <div class="space-y-3">
+
+                        <!-- Aturan Upload e-Faktur Pajak (Diperbarui Tgl 20) -->
+                        <div class="p-4 rounded-xl border border-indigo-200 bg-indigo-50/40">
+                            <div class="flex items-center justify-between mb-1">
+                                <h4 class="text-xs font-bold text-google-textPrimary">Upload e-Faktur Pajak</h4>
+                                <span class="text-[10px] font-medium text-indigo-700 bg-indigo-100 px-2 py-0.5 rounded-full">PER-11/PJ/2025</span>
+                            </div>
+                            <p class="text-[11px] text-google-textSec leading-relaxed mb-3">
+                                Faktur Pajak atas penyerahan bulan sebelumnya wajib di-upload ke sistem DJP untuk persetujuan paling lambat <strong class="text-indigo-900">tanggal 20 bulan berikutnya</strong>.
+                            </p>
+                            <div class="pt-2 border-t border-indigo-100 flex justify-between text-[10px] font-medium text-google-textSec">
+                                <span>Batas Upload e-Faktur: <strong class="text-indigo-700">Tgl 20 Bulan Depan</strong></span>
+                                <span>Lapor SPT PPN: <strong class="text-google-textPrimary">Akhir Bulan Depan</strong></span>
+                            </div>
+                        </div>
+
+                        <!-- PPh 21 TER -->
+                        <div class="p-4 rounded-xl border border-google-border bg-white">
+                            <div class="flex items-center justify-between mb-1">
+                                <h4 class="text-xs font-bold text-google-textPrimary">PPh Pasal 21 / 26</h4>
+                                <span class="text-[10px] font-medium text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full">Karyawan & OP</span>
+                            </div>
+                            <p class="text-[11px] text-google-textSec leading-relaxed mb-3">
+                                Pajak atas gaji, upah, honorarium, dan jasa orang pribadi. Menggunakan skema TER (PMK 168/2023).
+                            </p>
+                            <div class="pt-2 border-t border-gray-100 flex justify-between text-[10px] font-medium text-google-textSec">
+                                <span>Setor: <strong class="text-google-textPrimary">Tgl 10</strong></span>
+                                <span>Lapor: <strong class="text-google-textPrimary">Tgl 20</strong></span>
+                            </div>
+                        </div>
+
+                        <!-- PPh 23 -->
+                        <div class="p-4 rounded-xl border border-google-border bg-white">
+                            <div class="flex items-center justify-between mb-1">
+                                <h4 class="text-xs font-bold text-google-textPrimary">PPh Pasal 23</h4>
+                                <span class="text-[10px] font-medium text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">Jasa & Modal B2B</span>
+                            </div>
+                            <p class="text-[11px] text-google-textSec leading-relaxed mb-3">
+                                Pemotongan atas sewa harta non-bangunan (2%), jasa teknik/manajemen (2%), serta dividen & bunga (15%).
+                            </p>
+                            <div class="pt-2 border-t border-gray-100 flex justify-between text-[10px] font-medium text-google-textSec">
+                                <span>Setor: <strong class="text-google-textPrimary">Tgl 10</strong></span>
+                                <span>Lapor: <strong class="text-google-textPrimary">Tgl 20</strong></span>
+                            </div>
+                        </div>
+
+                        <!-- PPh 4(2) -->
+                        <div class="p-4 rounded-xl border border-google-border bg-white">
+                            <div class="flex items-center justify-between mb-1">
+                                <h4 class="text-xs font-bold text-google-textPrimary">PPh Pasal 4 Ayat (2)</h4>
+                                <span class="text-[10px] font-medium text-purple-700 bg-purple-50 px-2 py-0.5 rounded-full">Sewa & Konstruksi</span>
+                            </div>
+                            <p class="text-[11px] text-google-textSec leading-relaxed mb-3">
+                                PPh Final atas sewa tanah/bangunan (10%), jasa konstruksi, serta pengalihan hak tanah/bangunan.
+                            </p>
+                            <div class="pt-2 border-t border-gray-100 flex justify-between text-[10px] font-medium text-google-textSec">
+                                <span>Setor: <strong class="text-google-textPrimary">Tgl 10</strong></span>
+                                <span>Lapor: <strong class="text-google-textPrimary">Tgl 20</strong></span>
+                            </div>
+                        </div>
+
+                        <!-- PPh UMKM PP 55 -->
+                        <div class="p-4 rounded-xl border border-google-border bg-white">
+                            <div class="flex items-center justify-between mb-1">
+                                <h4 class="text-xs font-bold text-google-textPrimary">PPh Final UMKM 0,5%</h4>
+                                <span class="text-[10px] font-medium text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">PP 55 / 2022</span>
+                            </div>
+                            <p class="text-[11px] text-google-textSec leading-relaxed mb-3">
+                                Pajak omset usaha &lt; Rp4,8 M/tahun. Bebas pajak untuk WPOP omset s.d. Rp500 juta/tahun.
+                            </p>
+                            <div class="pt-2 border-t border-gray-100 flex justify-between text-[10px] font-medium text-google-textSec">
+                                <span>Setor: <strong class="text-google-textPrimary">Tgl 15</strong></span>
+                                <span>Lapor: <strong class="text-google-textPrimary">Validasi NTPN</strong></span>
+                            </div>
+                        </div>
+
+                        <!-- PPN -->
+                        <div class="p-4 rounded-xl border border-google-border bg-white">
+                            <div class="flex items-center justify-between mb-1">
+                                <h4 class="text-xs font-bold text-google-textPrimary">PPN (Pengusaha Kena Pajak)</h4>
+                                <span class="text-[10px] font-medium text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded-full">PKP / e-Faktur</span>
+                            </div>
+                            <p class="text-[11px] text-google-textSec leading-relaxed mb-3">
+                                Pajak Pertambahan Nilai atas penyerahan BKP/JKP. Perhitungan Pajak Keluaran dikurangi Pajak Masukan.
+                            </p>
+                            <div class="pt-2 border-t border-gray-100 flex justify-between text-[10px] font-medium text-google-textSec">
+                                <span>Setor: <strong class="text-google-textPrimary">Akhir Bulan</strong></span>
+                                <span>Lapor: <strong class="text-google-textPrimary">Akhir Bulan</strong></span>
+                            </div>
+                        </div>
+
+                        <!-- SPT Tahunan -->
+                        <div class="p-4 rounded-xl border border-google-border bg-white">
+                            <div class="flex items-center justify-between mb-1">
+                                <h4 class="text-xs font-bold text-google-textPrimary">SPT Tahunan</h4>
+                                <span class="text-[10px] font-medium text-rose-700 bg-rose-50 px-2 py-0.5 rounded-full">Pelaporan Tahunan</span>
+                            </div>
+                            <p class="text-[11px] text-google-textSec leading-relaxed mb-3">
+                                Pelaporan seluruh penghasilan, harta, dan kewajiban tahunan. Form 1770 (OP) dan Form 1771 (Badan).
+                            </p>
+                            <div class="pt-2 border-t border-gray-100 flex justify-between text-[10px] font-medium text-google-textSec">
+                                <span>Lapor OP: <strong class="text-google-textPrimary">31 Maret</strong></span>
+                                <span>Lapor Badan: <strong class="text-google-textPrimary">30 April</strong></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+            </main>
+        </div>
+
+        <!-- Footer Ringkas dengan Identitas KPP Pratama Denpasar Barat -->
+        <footer class="border-t border-google-border py-4 px-5 text-center bg-white mt-4">
+            <p class="text-[12px] font-bold text-google-textPrimary">
+                BUKU SAKU PAJAK
+            </p>
+            <p class="text-[11px] font-medium text-google-blue mt-0.5">
+                Dibuat dan diterbitkan oleh KPP Pratama Denpasar Barat
+            </p>
+            <p class="text-[9px] text-gray-400 mt-1">
+                Regulasi Terkini: PER-11/PJ/2025 (Coretax), TER PMK 168/2023, PP 55/2022
+            </p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
