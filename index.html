@@ -1,305 +1,710 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BUKU SAKU PAJAK — KPP Pratama Denpasar Barat</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        google: {
-                            blue: '#1a73e8',
-                            red: '#ea4335',
-                            yellow: '#fbbc04',
-                            green: '#34a853',
-                            grayBg: '#f8f9fa',
-                            textPrimary: '#202124',
-                            textSec: '#5f6368',
-                            border: '#e8eaed'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Roboto', '-apple-system', 'BlinkMacSystemFont', 'sans-serif']
-                    }
-                }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arsip Hidup &amp; Rumah Gagasan — Fatah Yasin | The Digital Living Archive</title>
+  <meta name="description" content="Arsip Hidup & Rumah Gagasan Fatah Yasin — Mantan Sekjen PB HMI, Ketua Kopel Bulog, dan penggerak tradisi literasi pemikiran Islam serta kebangsaan." />
+
+  <!-- Google Fonts: Cormorant Garamond & Lora (Editorial Serif) + Inter (Clean Sans-Serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind Custom Design Tokens -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paper: {
+              DEFAULT: '#F9F7F2',
+              warm: '#F2EEE4',
+              card: '#FFFDF9',
+              border: '#E3DDD0',
+            },
+            charcoal: {
+              DEFAULT: '#1E201E',
+              muted: '#4A4E4B',
+              soft: '#6E736F',
+            },
+            emeraldDeep: {
+              DEFAULT: '#0F4C3A',
+              dark: '#093327',
+              light: '#196B52',
+              tint: '#E7F0ED',
+            },
+            goldAccent: {
+              DEFAULT: '#9E7B43',
+              light: '#F4EFE4',
             }
+          },
+          fontFamily: {
+            serifDisplay: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            serifBody: ['"Lora"', 'Georgia', 'serif'],
+            sans: ['"Inter"', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            'editorial': '0 12px 32px -8px rgba(30, 32, 30, 0.06)',
+            'book': '4px 8px 18px rgba(15, 76, 58, 0.14)',
+          }
         }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            color: #202124;
-            background-color: #f8f9fa;
-            -webkit-tap-highlight-color: transparent;
-        }
-    </style>
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      background-color: #F9F7F2;
+      color: #1E201E;
+      font-feature-settings: "kern" 1, "liga" 1;
+    }
+    .paper-grain {
+      background-image: radial-gradient(rgba(30, 32, 30, 0.035) 1px, transparent 0);
+      background-size: 24px 24px;
+    }
+    ::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F2EEE4;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #C5BEB0;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #0F4C3A;
+    }
+    .book-spine {
+      background: linear-gradient(90deg, rgba(0,0,0,0.22) 0%, rgba(255,255,255,0.12) 12%, rgba(0,0,0,0) 24%);
+    }
+    .modal-backdrop {
+      transition: opacity 0.25s ease;
+    }
+    .modal-panel {
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+    }
+  </style>
 </head>
-<body class="min-h-screen flex justify-center items-start antialiased selection:bg-blue-100">
+<body class="font-sans antialiased selection:bg-emeraldDeep selection:text-paper paper-grain">
 
-    <!-- Container Utama (Format Layar HP / Mobile Portrait) -->
-    <div class="w-full max-w-md bg-white min-h-screen shadow-lg border-x border-google-border flex flex-col justify-between">
-        
-        <div>
-            <!-- Header Ringkas dengan Judul Diperbesar & Nama KPP -->
-            <header class="sticky top-0 z-10 bg-white border-b border-google-border px-5 py-4 flex items-center justify-between shadow-xs">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-xl bg-google-blue flex items-center justify-center text-white font-black text-xl shadow-md">
-                        P
-                    </div>
-                    <div>
-                        <!-- Tulisan BUKU SAKU PAJAK Diperbesar -->
-                        <h1 class="text-xl font-black tracking-tight text-google-textPrimary leading-none uppercase">
-                            BUKU SAKU PAJAK
-                        </h1>
-                        <p class="text-[11px] text-google-blue font-semibold mt-1">
-                            KPP Pratama Denpasar Barat
-                        </p>
-                    </div>
-                </div>
-                <span class="text-[10px] bg-emerald-50 text-emerald-700 font-bold px-2.5 py-1 rounded-full border border-emerald-200">
-                    2026
-                </span>
-            </header>
+  <!-- ==================== TOP EDITORIAL MASTHEAD / NAVBAR ==================== -->
+  <header class="sticky top-0 z-40 bg-paper/95 backdrop-blur-md border-b border-paper-border">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        <a href="#" class="flex items-center gap-3 group">
+          <div class="w-9 h-9 rounded-lg bg-emeraldDeep text-paper flex items-center justify-center font-serifDisplay font-bold text-xl tracking-tight shadow-sm group-hover:bg-emeraldDeep-dark transition-colors">
+            FY
+          </div>
+          <div>
+            <span class="block font-serifDisplay font-bold text-lg sm:text-xl leading-none text-charcoal tracking-tight">
+              Rumah Gagasan
+            </span>
+            <span class="block text-[11px] uppercase tracking-[0.18em] text-charcoal-soft mt-1">
+              The Digital Living Archive
+            </span>
+          </div>
+        </a>
 
-            <main class="px-5 py-5 space-y-6">
+        <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-charcoal-muted">
+          <a href="#jejak" class="hover:text-emeraldDeep transition-colors py-2">Jejak Perjalanan</a>
+          <a href="#gagasan" class="hover:text-emeraldDeep transition-colors py-2">Kurasi Gagasan</a>
+          <a href="#rak-buku" class="hover:text-emeraldDeep transition-colors py-2">Rak Buku Virtual</a>
+          <a href="#diskusi" class="px-4 py-2 rounded-lg bg-emeraldDeep text-paper hover:bg-emeraldDeep-dark transition-colors shadow-sm">
+            Ruang Diskusi
+          </a>
+        </nav>
 
-                <!-- Judul Utama Halaman & Instansi Penerbit -->
-                <div class="text-left pt-1">
-                    <h2 class="text-xl font-bold text-google-textPrimary">Kalender & Pasal Pajak</h2>
-                    <p class="text-xs text-google-textSec mt-1">
-                        Panduan rutin penyetoran, pelaporan, dan aturan pasal perpajakan utama.
-                    </p>
-                    <div class="mt-2.5 inline-block bg-blue-50/80 border border-blue-100 rounded-lg px-3 py-1.5">
-                        <p class="text-[11px] font-medium text-google-blue">
-                            Dibuat dan diterbitkan oleh <strong>KPP Pratama Denpasar Barat</strong>
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Bagian 1: Kalender Pajak Bulanan -->
-                <section class="space-y-3">
-                    <div class="flex items-center justify-between border-b border-google-border pb-2">
-                        <h3 class="text-xs font-bold uppercase tracking-wider text-google-textSec flex items-center">
-                            <span class="w-2 h-2 rounded-full bg-google-blue mr-2"></span>
-                            Jadwal Jatuh Tempo Bulanan
-                        </h3>
-                    </div>
-
-                    <!-- List Kalender Vertikal -->
-                    <div class="space-y-2.5">
-                        
-                        <!-- Tgl 10 -->
-                        <div class="p-3.5 rounded-xl border border-google-border bg-white flex items-start space-x-3.5">
-                            <div class="flex-shrink-0 w-12 text-center py-1 rounded-lg bg-blue-50 border border-blue-100">
-                                <span class="block text-xs font-semibold text-google-blue uppercase">TGL</span>
-                                <span class="block text-lg font-bold text-google-blue leading-none">10</span>
-                            </div>
-                            <div class="flex-1 min-w-0">
-                                <div class="flex items-center justify-between mb-0.5">
-                                    <h4 class="text-xs font-bold text-google-textPrimary">PPh Dipotong / Dipungut</h4>
-                                    <span class="text-[9px] font-bold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SETOR</span>
-                                </div>
-                                <p class="text-[11px] text-google-textSec leading-snug">
-                                    Batas penyetoran PPh 21/26, PPh 23, PPh 22, dan PPh 4(2) Final.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Tgl 15 -->
-                        <div class="p-3.5 rounded-xl border border-google-border bg-white flex items-start space-x-3.5">
-                            <div class="flex-shrink-0 w-12 text-center py-1 rounded-lg bg-amber-50 border border-amber-100">
-                                <span class="block text-xs font-semibold text-amber-600 uppercase">TGL</span>
-                                <span class="block text-lg font-bold text-amber-600 leading-none">15</span>
-                            </div>
-                            <div class="flex-1 min-w-0">
-                                <div class="flex items-center justify-between mb-0.5">
-                                    <h4 class="text-xs font-bold text-google-textPrimary">PPh Setor Sendiri & UMKM</h4>
-                                    <span class="text-[9px] font-bold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded">SETOR</span>
-                                </div>
-                                <p class="text-[11px] text-google-textSec leading-snug">
-                                    Batas setor Angsuran PPh 25 & PPh Final UMKM 0,5% (PP 55/2022).
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Tgl 20 -->
-                        <div class="p-3.5 rounded-xl border border-indigo-200 bg-indigo-50/30 flex items-start space-x-3.5">
-                            <div class="flex-shrink-0 w-12 text-center py-1 rounded-lg bg-indigo-100 border border-indigo-200">
-                                <span class="block text-xs font-semibold text-indigo-700 uppercase">TGL</span>
-                                <span class="block text-lg font-bold text-indigo-700 leading-none">20</span>
-                            </div>
-                            <div class="flex-1 min-w-0">
-                                <div class="flex items-center justify-between mb-0.5">
-                                    <h4 class="text-xs font-bold text-google-textPrimary">Upload e-Faktur & Lapor PPh</h4>
-                                    <span class="text-[9px] font-bold text-indigo-700 bg-indigo-100 px-1.5 py-0.5 rounded">UPLOAD & LAPOR</span>
-                                </div>
-                                <p class="text-[11px] text-google-textSec leading-snug">
-                                    Batas upload e-Faktur (PER-11/PJ/2025) & lapor SPT Masa PPh 21, 23, 22, 4(2).
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Akhir Bulan -->
-                        <div class="p-3.5 rounded-xl border border-google-border bg-white flex items-start space-x-3.5">
-                            <div class="flex-shrink-0 w-12 text-center py-1 rounded-lg bg-emerald-50 border border-emerald-100">
-                                <span class="block text-[9px] font-semibold text-google-green uppercase">AKHIR</span>
-                                <span class="block text-xs font-bold text-google-green leading-tight">BULAN</span>
-                            </div>
-                            <div class="flex-1 min-w-0">
-                                <div class="flex items-center justify-between mb-0.5">
-                                    <h4 class="text-xs font-bold text-google-textPrimary">SPT Masa PPN</h4>
-                                    <span class="text-[9px] font-bold text-google-green bg-emerald-50 px-1.5 py-0.5 rounded">SETOR & LAPOR</span>
-                                </div>
-                                <p class="text-[11px] text-google-textSec leading-snug">
-                                    Batas penyetoran PPN Kurang Bayar dan pelaporan SPT Masa PPN.
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-                </section>
-
-                <!-- Bagian 2: Pasal Pajak Utama -->
-                <section class="space-y-3 pt-2">
-                    <div class="flex items-center justify-between border-b border-google-border pb-2">
-                        <h3 class="text-xs font-bold uppercase tracking-wider text-google-textSec flex items-center">
-                            <span class="w-2 h-2 rounded-full bg-google-green mr-2"></span>
-                            Kewajiban Pasal Utama
-                        </h3>
-                    </div>
-
-                    <div class="space-y-3">
-
-                        <!-- Aturan Upload e-Faktur Pajak (Diperbarui Tgl 20) -->
-                        <div class="p-4 rounded-xl border border-indigo-200 bg-indigo-50/40">
-                            <div class="flex items-center justify-between mb-1">
-                                <h4 class="text-xs font-bold text-google-textPrimary">Upload e-Faktur Pajak</h4>
-                                <span class="text-[10px] font-medium text-indigo-700 bg-indigo-100 px-2 py-0.5 rounded-full">PER-11/PJ/2025</span>
-                            </div>
-                            <p class="text-[11px] text-google-textSec leading-relaxed mb-3">
-                                Faktur Pajak atas penyerahan bulan sebelumnya wajib di-upload ke sistem DJP untuk persetujuan paling lambat <strong class="text-indigo-900">tanggal 20 bulan berikutnya</strong>.
-                            </p>
-                            <div class="pt-2 border-t border-indigo-100 flex justify-between text-[10px] font-medium text-google-textSec">
-                                <span>Batas Upload e-Faktur: <strong class="text-indigo-700">Tgl 20 Bulan Depan</strong></span>
-                                <span>Lapor SPT PPN: <strong class="text-google-textPrimary">Akhir Bulan Depan</strong></span>
-                            </div>
-                        </div>
-
-                        <!-- PPh 21 TER -->
-                        <div class="p-4 rounded-xl border border-google-border bg-white">
-                            <div class="flex items-center justify-between mb-1">
-                                <h4 class="text-xs font-bold text-google-textPrimary">PPh Pasal 21 / 26</h4>
-                                <span class="text-[10px] font-medium text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full">Karyawan & OP</span>
-                            </div>
-                            <p class="text-[11px] text-google-textSec leading-relaxed mb-3">
-                                Pajak atas gaji, upah, honorarium, dan jasa orang pribadi. Menggunakan skema TER (PMK 168/2023).
-                            </p>
-                            <div class="pt-2 border-t border-gray-100 flex justify-between text-[10px] font-medium text-google-textSec">
-                                <span>Setor: <strong class="text-google-textPrimary">Tgl 10</strong></span>
-                                <span>Lapor: <strong class="text-google-textPrimary">Tgl 20</strong></span>
-                            </div>
-                        </div>
-
-                        <!-- PPh 23 -->
-                        <div class="p-4 rounded-xl border border-google-border bg-white">
-                            <div class="flex items-center justify-between mb-1">
-                                <h4 class="text-xs font-bold text-google-textPrimary">PPh Pasal 23</h4>
-                                <span class="text-[10px] font-medium text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">Jasa & Modal B2B</span>
-                            </div>
-                            <p class="text-[11px] text-google-textSec leading-relaxed mb-3">
-                                Pemotongan atas sewa harta non-bangunan (2%), jasa teknik/manajemen (2%), serta dividen & bunga (15%).
-                            </p>
-                            <div class="pt-2 border-t border-gray-100 flex justify-between text-[10px] font-medium text-google-textSec">
-                                <span>Setor: <strong class="text-google-textPrimary">Tgl 10</strong></span>
-                                <span>Lapor: <strong class="text-google-textPrimary">Tgl 20</strong></span>
-                            </div>
-                        </div>
-
-                        <!-- PPh 4(2) -->
-                        <div class="p-4 rounded-xl border border-google-border bg-white">
-                            <div class="flex items-center justify-between mb-1">
-                                <h4 class="text-xs font-bold text-google-textPrimary">PPh Pasal 4 Ayat (2)</h4>
-                                <span class="text-[10px] font-medium text-purple-700 bg-purple-50 px-2 py-0.5 rounded-full">Sewa & Konstruksi</span>
-                            </div>
-                            <p class="text-[11px] text-google-textSec leading-relaxed mb-3">
-                                PPh Final atas sewa tanah/bangunan (10%), jasa konstruksi, serta pengalihan hak tanah/bangunan.
-                            </p>
-                            <div class="pt-2 border-t border-gray-100 flex justify-between text-[10px] font-medium text-google-textSec">
-                                <span>Setor: <strong class="text-google-textPrimary">Tgl 10</strong></span>
-                                <span>Lapor: <strong class="text-google-textPrimary">Tgl 20</strong></span>
-                            </div>
-                        </div>
-
-                        <!-- PPh UMKM PP 55 -->
-                        <div class="p-4 rounded-xl border border-google-border bg-white">
-                            <div class="flex items-center justify-between mb-1">
-                                <h4 class="text-xs font-bold text-google-textPrimary">PPh Final UMKM 0,5%</h4>
-                                <span class="text-[10px] font-medium text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">PP 55 / 2022</span>
-                            </div>
-                            <p class="text-[11px] text-google-textSec leading-relaxed mb-3">
-                                Pajak omset usaha &lt; Rp4,8 M/tahun. Bebas pajak untuk WPOP omset s.d. Rp500 juta/tahun.
-                            </p>
-                            <div class="pt-2 border-t border-gray-100 flex justify-between text-[10px] font-medium text-google-textSec">
-                                <span>Setor: <strong class="text-google-textPrimary">Tgl 15</strong></span>
-                                <span>Lapor: <strong class="text-google-textPrimary">Validasi NTPN</strong></span>
-                            </div>
-                        </div>
-
-                        <!-- PPN -->
-                        <div class="p-4 rounded-xl border border-google-border bg-white">
-                            <div class="flex items-center justify-between mb-1">
-                                <h4 class="text-xs font-bold text-google-textPrimary">PPN (Pengusaha Kena Pajak)</h4>
-                                <span class="text-[10px] font-medium text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded-full">PKP / e-Faktur</span>
-                            </div>
-                            <p class="text-[11px] text-google-textSec leading-relaxed mb-3">
-                                Pajak Pertambahan Nilai atas penyerahan BKP/JKP. Perhitungan Pajak Keluaran dikurangi Pajak Masukan.
-                            </p>
-                            <div class="pt-2 border-t border-gray-100 flex justify-between text-[10px] font-medium text-google-textSec">
-                                <span>Setor: <strong class="text-google-textPrimary">Akhir Bulan</strong></span>
-                                <span>Lapor: <strong class="text-google-textPrimary">Akhir Bulan</strong></span>
-                            </div>
-                        </div>
-
-                        <!-- SPT Tahunan -->
-                        <div class="p-4 rounded-xl border border-google-border bg-white">
-                            <div class="flex items-center justify-between mb-1">
-                                <h4 class="text-xs font-bold text-google-textPrimary">SPT Tahunan</h4>
-                                <span class="text-[10px] font-medium text-rose-700 bg-rose-50 px-2 py-0.5 rounded-full">Pelaporan Tahunan</span>
-                            </div>
-                            <p class="text-[11px] text-google-textSec leading-relaxed mb-3">
-                                Pelaporan seluruh penghasilan, harta, dan kewajiban tahunan. Form 1770 (OP) dan Form 1771 (Badan).
-                            </p>
-                            <div class="pt-2 border-t border-gray-100 flex justify-between text-[10px] font-medium text-google-textSec">
-                                <span>Lapor OP: <strong class="text-google-textPrimary">31 Maret</strong></span>
-                                <span>Lapor Badan: <strong class="text-google-textPrimary">30 April</strong></span>
-                            </div>
-                        </div>
-
-                    </div>
-                </section>
-
-            </main>
-        </div>
-
-        <!-- Footer Ringkas dengan Identitas KPP Pratama Denpasar Barat -->
-        <footer class="border-t border-google-border py-4 px-5 text-center bg-white mt-4">
-            <p class="text-[12px] font-bold text-google-textPrimary">
-                BUKU SAKU PAJAK
-            </p>
-            <p class="text-[11px] font-medium text-google-blue mt-0.5">
-                Dibuat dan diterbitkan oleh KPP Pratama Denpasar Barat
-            </p>
-            <p class="text-[9px] text-gray-400 mt-1">
-                Regulasi Terkini: PER-11/PJ/2025 (Coretax), TER PMK 168/2023, PP 55/2022
-            </p>
-        </footer>
-
+        <button id="mobile-menu-btn" type="button" aria-label="Buka navigasi" class="md:hidden p-2.5 rounded-lg text-charcoal hover:bg-paper-warm border border-paper-border transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
     </div>
 
+    <div id="mobile-menu" class="hidden md:hidden bg-paper-card border-b border-paper-border px-4 pt-2 pb-5 space-y-2">
+      <a href="#jejak" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium text-charcoal hover:bg-paper-warm">Jejak Perjalanan</a>
+      <a href="#gagasan" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium text-charcoal hover:bg-paper-warm">Kurasi Gagasan &amp; Esai</a>
+      <a href="#rak-buku" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium text-charcoal hover:bg-paper-warm">Rak Buku Virtual</a>
+      <a href="#diskusi" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium bg-emeraldDeep text-paper text-center mt-2">Ruang Diskusi &amp; Titip Gagasan</a>
+    </div>
+  </header>
+
+  <!-- ==================== 1. HERO SECTION ==================== -->
+  <section class="relative pt-12 pb-16 sm:pt-20 sm:pb-24 border-b border-paper-border overflow-hidden">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-wrap items-center justify-center gap-2 mb-8">
+        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emeraldDeep-tint text-emeraldDeep text-xs font-medium tracking-wide border border-emeraldDeep/15">
+          <span class="w-1.5 h-1.5 rounded-full bg-emeraldDeep"></span>
+          ARSIP HIDUP &amp; REKAM JEJAK INTELEKTUAL
+        </span>
+      </div>
+
+      <blockquote class="max-w-3xl mx-auto text-center mb-10 sm:mb-12">
+        <p class="font-serifDisplay italic text-2xl sm:text-4xl lg:text-[2.65rem] text-charcoal leading-snug tracking-tight">
+          &ldquo;Apa yang tidak ditulis akan hilang ditelan angin; apa yang tidak dibukukan akan lenyap menjadi debu sejarah.&rdquo;
+        </p>
+        <footer class="mt-4 text-xs sm:text-sm uppercase tracking-[0.2em] text-goldAccent font-medium">
+          &mdash; Merawat Tradisi Literasi &amp; Historiografi Pergerakan
+        </footer>
+      </blockquote>
+
+      <div class="flex items-center justify-center gap-4 my-8 sm:my-10">
+        <div class="h-px w-16 sm:w-28 bg-paper-border"></div>
+        <span class="text-emeraldDeep font-serifDisplay text-lg">&#10022;</span>
+        <div class="h-px w-16 sm:w-28 bg-paper-border"></div>
+      </div>
+
+      <div class="bg-paper-card border border-paper-border rounded-2xl p-6 sm:p-10 lg:p-12 shadow-editorial">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <!-- Foto Profil Utama -->
+          <div class="lg:col-span-4 flex flex-col items-center text-center">
+            <div class="w-48 h-60 sm:w-56 sm:h-72 rounded-2xl overflow-hidden shadow-book border-2 border-emeraldDeep/20 bg-paper-warm relative group">
+              <img src="foto-fatah-yasin_2.png" alt="Fatah Yasin - Memegang Buku dan Pemikiran" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
+              <div class="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+              <div class="absolute bottom-3 left-3 right-3 text-left">
+                <span class="text-[10px] uppercase tracking-[0.2em] text-paper/90 font-medium block">Monograf Intelektual</span>
+                <span class="font-serifDisplay text-lg font-bold text-paper block leading-tight">Fatah Yasin</span>
+              </div>
+            </div>
+            <div class="mt-4 flex flex-wrap justify-center gap-1.5">
+              <span class="px-2.5 py-1 rounded-md bg-paper-warm text-charcoal-muted text-[11px] font-medium border border-paper-border">Mantan Sekjen PB HMI</span>
+              <span class="px-2.5 py-1 rounded-md bg-paper-warm text-charcoal-muted text-[11px] font-medium border border-paper-border">Ketua Kopel Bulog</span>
+            </div>
+          </div>
+
+          <div class="lg:col-span-8 space-y-5">
+            <div class="inline-block text-xs font-semibold uppercase tracking-[0.16em] text-emeraldDeep">
+              Pengantar Kuratorial
+            </div>
+            <h1 class="font-serifDisplay text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-charcoal leading-[1.15]">
+              Fatah Yasin: Menjemput Takdir Lewat Jalan Sunyi Literasi
+            </h1>
+            <p class="font-serifBody text-base sm:text-lg text-charcoal-muted leading-relaxed">
+              Lahir dan tumbuh di lingkungan keluarga nelayan pesisir dengan keterbatasan akses pendidikan tidak pernah membatasi cakrawala berpikirnya. Bagi <strong>Fatah Yasin</strong>, buku adalah jembatan mobilitas sosial paling jujur—alat pembebasan yang membawanya dari ruang-ruang diskusi kader hingga menjabat sebagai <strong>Sekretaris Jenderal Pengurus Besar Himpunan Mahasiswa Islam (PB HMI)</strong> dan dipercaya memimpin pengelolaan kelembagaan di lingkungan <strong>Perum Bulog</strong>.
+            </p>
+            <p class="font-serifBody text-sm sm:text-base text-charcoal-soft leading-relaxed">
+              Portal <em>The Digital Living Archive</em> ini dirancang sebagai rumah gagasan: tempat merawat catatan bacaan pemikiran Islam, merekam jejak pengabdian organisasi, dan mewariskan tradisi intelektual agar tetap hidup bagi generasi kader berikutnya.
+            </p>
+
+            <div class="pt-3 flex flex-wrap items-center gap-3 sm:gap-4">
+              <a href="#gagasan" class="px-5 py-3 rounded-xl bg-emeraldDeep text-paper text-sm font-medium hover:bg-emeraldDeep-dark transition-all shadow-sm inline-flex items-center gap-2">
+                <span>Baca Kurasi Pemikiran</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+              <a href="#rak-buku" class="px-5 py-3 rounded-xl bg-paper-warm text-charcoal text-sm font-medium hover:bg-paper-border/60 border border-paper-border transition-all">
+                Jelajahi Rak Buku Virtual
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== 2. JEJAK PERJALANAN ==================== -->
+  <section id="jejak" class="py-16 sm:py-24 border-b border-paper-border">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mb-12">
+        <span class="text-xs font-semibold uppercase tracking-[0.18em] text-emeraldDeep block mb-2">
+          01 &mdash; Historiografi &amp; Mobilitas Sosial
+        </span>
+        <h2 class="font-serifDisplay text-3xl sm:text-4xl font-bold text-charcoal">
+          Jejak Perjalanan Intelektual &amp; Pengabdian
+        </h2>
+        <p class="mt-3 text-sm sm:text-base text-charcoal-muted leading-relaxed">
+          Klik setiap fase perjalanan di bawah ini untuk menelusuri titik balik pemikiran, kepemimpinan organisasi, dan dedikasi pada tradisi literasi.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div class="lg:col-span-5 space-y-3" id="timeline-tabs"></div>
+        <div class="lg:col-span-7">
+          <div id="timeline-detail" class="bg-paper-card border border-paper-border rounded-2xl p-6 sm:p-9 shadow-editorial transition-all duration-300"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 3. KURASI GAGASAN & ESAI PILIHAN ==================== -->
+  <section id="gagasan" class="py-16 sm:py-24 bg-paper-warm/60 border-b border-paper-border">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div class="max-w-2xl">
+          <span class="text-xs font-semibold uppercase tracking-[0.18em] text-emeraldDeep block mb-2">
+            02 &mdash; Catatan Pemikiran &amp; Esai
+          </span>
+          <h2 class="font-serifDisplay text-3xl sm:text-4xl font-bold text-charcoal">
+            Kurasi Gagasan &amp; Esai Pilihan
+          </h2>
+          <p class="mt-3 text-sm sm:text-base text-charcoal-muted leading-relaxed">
+            Refleksi tertulis mengenai keislaman, keindonesiaan, kepemimpinan kader, dan etos literasi. Klik artikel untuk membacanya dalam mode baca penuh.
+          </p>
+        </div>
+        <div class="text-xs text-charcoal-soft italic font-serifBody">
+          *Tersedia Mode Baca Nyaman (Reader Mode)
+        </div>
+      </div>
+
+      <div id="essays-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8"></div>
+    </div>
+  </section>
+
+  <!-- ==================== 4. RAK BUKU VIRTUAL ==================== -->
+  <section id="rak-buku" class="py-16 sm:py-24 border-b border-paper-border">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-10 gap-6">
+        <div class="max-w-2xl">
+          <span class="text-xs font-semibold uppercase tracking-[0.18em] text-emeraldDeep block mb-2">
+            03 &mdash; Pustaka Kuratorial Pribadi
+          </span>
+          <h2 class="font-serifDisplay text-3xl sm:text-4xl font-bold text-charcoal">
+            Rak Buku Virtual &amp; Kurasi Bacaan
+          </h2>
+          <p class="mt-3 text-sm sm:text-base text-charcoal-muted leading-relaxed">
+            Kumpulan literatur fundamental yang membentuk kerangka berpikir—disertai catatan kuratorial mengapa setiap buku ini layak dibaca ulang oleh kader dan penggerak organisasi.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap gap-2" id="book-filters">
+          <button data-filter="Semua" class="filter-btn active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-all bg-emeraldDeep text-paper shadow-sm">
+            Semua Koleksi
+          </button>
+          <button data-filter="Pemikiran Islam" class="filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-all bg-paper-card text-charcoal-muted border border-paper-border hover:border-emeraldDeep">
+            Pemikiran Islam
+          </button>
+          <button data-filter="Sejarah & Pergerakan" class="filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-all bg-paper-card text-charcoal-muted border border-paper-border hover:border-emeraldDeep">
+            Sejarah &amp; Pergerakan
+          </button>
+          <button data-filter="Kepemimpinan" class="filter-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-all bg-paper-card text-charcoal-muted border border-paper-border hover:border-emeraldDeep">
+            Kepemimpinan
+          </button>
+        </div>
+      </div>
+
+      <div id="books-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"></div>
+    </div>
+  </section>
+
+  <!-- ==================== 5. RUANG DISKUSI ==================== -->
+  <section id="diskusi" class="py-16 sm:py-24 bg-paper-warm/50">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-paper-card border border-paper-border rounded-2xl p-6 sm:p-10 lg:p-12 shadow-editorial">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          <div class="lg:col-span-5 flex flex-col justify-between space-y-6">
+            <div>
+              <span class="text-xs font-semibold uppercase tracking-[0.18em] text-emeraldDeep block mb-2">
+                04 &mdash; Dialog Intelektual
+              </span>
+              <h2 class="font-serifDisplay text-3xl sm:text-4xl font-bold text-charcoal leading-tight">
+                Ruang Diskusi &amp; Titip Gagasan
+              </h2>
+              <p class="mt-4 font-serifBody text-sm sm:text-base text-charcoal-muted leading-relaxed">
+                Tradisi intelektual hanya tumbuh melalui percakapan yang setara dan saling mencerahkan. Ruang ini terbuka bagi kader muda, peneliti, akademisi, maupun kolega organisasi untuk mengirimkan tanggapan pemikiran, rekomendasi buku, atau undangan bedah gagasan.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-emeraldDeep-tint/70 border border-emeraldDeep/15 space-y-2">
+              <p class="text-xs font-semibold uppercase tracking-wider text-emeraldDeep">
+                Fokus Percakapan
+              </p>
+              <ul class="text-xs sm:text-sm text-charcoal-muted space-y-1.5">
+                <li>&#8226; Pengarsipan sejarah &amp; literasi kaderisasi</li>
+                <li>&#8226; Pemikiran Islam &amp; transformasi sosial</li>
+                <li>&#8226; Tata kelola organisasi, yayasan &amp; koperasi</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7">
+            <form id="discussion-form" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="sender-name" class="block text-xs font-semibold uppercase tracking-wider text-charcoal-muted mb-1.5">Nama Lengkap *</label>
+                  <input type="text" id="sender-name" required placeholder="Misal: Ahmad Fauzi" class="w-full px-4 py-3 rounded-xl bg-paper border border-paper-border text-sm text-charcoal focus:outline-none focus:border-emeraldDeep" />
+                </div>
+                <div>
+                  <label for="sender-affiliation" class="block text-xs font-semibold uppercase tracking-wider text-charcoal-muted mb-1.5">Afiliasi / Komunitas *</label>
+                  <input type="text" id="sender-affiliation" required placeholder="Misal: Kader HMI Cabang" class="w-full px-4 py-3 rounded-xl bg-paper border border-paper-border text-sm text-charcoal focus:outline-none focus:border-emeraldDeep" />
+                </div>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="topic-type" class="block text-xs font-semibold uppercase tracking-wider text-charcoal-muted mb-1.5">Keperluan</label>
+                  <select id="topic-type" class="w-full px-4 py-3 rounded-xl bg-paper border border-paper-border text-sm text-charcoal focus:outline-none focus:border-emeraldDeep">
+                    <option value="Tanggapan Esai & Pemikiran">Tanggapan Esai &amp; Pemikiran</option>
+                    <option value="Rekomendasi & Kurasi Buku">Rekomendasi &amp; Kurasi Buku</option>
+                    <option value="Undangan Diskusi / Bedah Buku">Undangan Diskusi / Bedah Buku</option>
+                    <option value="Kolaborasi Arsip & Literasi">Kolaborasi Arsip &amp; Literasi</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="sender-contact" class="block text-xs font-semibold uppercase tracking-wider text-charcoal-muted mb-1.5">Email / WhatsApp *</label>
+                  <input type="text" id="sender-contact" required placeholder="0812-xxxx-xxxx" class="w-full px-4 py-3 rounded-xl bg-paper border border-paper-border text-sm text-charcoal focus:outline-none focus:border-emeraldDeep" />
+                </div>
+              </div>
+              <div>
+                <label for="message-body" class="block text-xs font-semibold uppercase tracking-wider text-charcoal-muted mb-1.5">Catatan Gagasan / Pesan *</label>
+                <textarea id="message-body" rows="4" required placeholder="Tuliskan refleksi atau pokok gagasan..." class="w-full px-4 py-3 rounded-xl bg-paper border border-paper-border text-sm text-charcoal focus:outline-none focus:border-emeraldDeep"></textarea>
+              </div>
+              <div class="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <span class="text-xs text-charcoal-soft">Pesan akan dicatat dalam buku tamu gagasan digital.</span>
+                <button type="submit" class="px-6 py-3.5 rounded-xl bg-emeraldDeep text-paper text-sm font-medium hover:bg-emeraldDeep-dark transition-all shadow-sm inline-flex items-center justify-center gap-2 cursor-pointer">
+                  <span>Kirim Gagasan</span>
+                </button>
+              </div>
+            </form>
+            <div id="form-feedback" class="hidden mt-5 p-4 rounded-xl bg-emeraldDeep-tint border border-emeraldDeep/25 text-emeraldDeep text-sm">
+              <p class="font-semibold">Terima kasih, gagasan Anda telah tercatat.</p>
+              <p id="feedback-detail" class="text-xs text-charcoal-muted mt-1"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-charcoal text-paper/85 py-12 border-t border-charcoal">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-8 border-b border-paper/15">
+        <div>
+          <span class="font-serifDisplay text-2xl font-bold text-paper tracking-tight block">
+            Arsip Hidup &amp; Rumah Gagasan &mdash; Fatah Yasin
+          </span>
+          <p class="text-xs text-paper/65 mt-1.5 max-w-lg leading-relaxed">
+            The Digital Living Archive: Inisiatif pendokumentasian pemikiran Islam, sejarah pergerakan, dan tradisi literasi agar tidak lekang ditelan zaman.
+          </p>
+        </div>
+      </div>
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-paper/55 gap-2">
+        <p>&copy; 2026 Rumah Gagasan Fatah Yasin. Didesain sebagai Arsip Intelektual Digital.</p>
+        <p class="font-serifBody italic">&ldquo;Menulis adalah bekerja untuk keabadian.&rdquo;</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== ESSAY READER MODAL ==================== -->
+  <div id="essay-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-3 sm:p-6" role="dialog" aria-modal="true">
+    <div id="modal-backdrop" class="fixed inset-0 bg-charcoal/70 backdrop-blur-sm modal-backdrop"></div>
+    <div class="relative z-10 w-full max-w-3xl max-h-[90vh] bg-paper-card border border-paper-border rounded-2xl shadow-2xl flex flex-col overflow-hidden modal-panel">
+      <div class="flex items-center justify-between px-5 sm:px-8 py-4 bg-paper-warm border-b border-paper-border">
+        <div class="flex items-center gap-2.5">
+          <span id="modal-essay-category" class="px-2.5 py-1 rounded-md bg-emeraldDeep-tint text-emeraldDeep text-[11px] font-semibold uppercase tracking-wider"></span>
+          <span id="modal-essay-readtime" class="text-xs text-charcoal-soft"></span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="font-decrease" type="button" class="px-2.5 py-1.5 rounded-lg bg-paper border border-paper-border text-xs font-serifBody font-semibold text-charcoal">A-</button>
+          <button id="font-increase" type="button" class="px-2.5 py-1.5 rounded-lg bg-paper border border-paper-border text-xs font-serifBody font-semibold text-charcoal">A+</button>
+          <button id="close-modal-btn" type="button" class="ml-2 p-2 rounded-lg text-charcoal-muted hover:text-charcoal hover:bg-paper">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="p-6 sm:p-10 lg:px-14 overflow-y-auto space-y-6">
+        <header class="border-b border-paper-border pb-6">
+          <p id="modal-essay-date" class="text-xs uppercase tracking-[0.16em] text-goldAccent font-medium mb-2"></p>
+          <h3 id="modal-essay-title" class="font-serifDisplay text-2xl sm:text-4xl font-bold text-charcoal leading-tight"></h3>
+          <p id="modal-essay-subtitle" class="mt-3 font-serifBody italic text-base sm:text-lg text-charcoal-muted"></p>
+        </header>
+        <article id="modal-essay-content" class="font-serifBody text-base sm:text-[17px] text-charcoal leading-[1.85] space-y-5"></article>
+        <div class="pt-6 border-t border-paper-border flex justify-between text-xs text-charcoal-soft">
+          <span>Arsip Hidup &amp; Rumah Gagasan &mdash; Fatah Yasin</span>
+          <button id="copy-quote-btn" type="button" class="text-emeraldDeep font-medium hover:underline cursor-pointer">
+            <span id="copy-quote-text">Salin Kutipan Utama Esai</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script>
+    const timelineData = [
+      {
+        id: 'pesisir',
+        era: 'Fase I &bull; Akar & Pembentukan Karakter',
+        title: 'Akar Pesisir Nelayan & Perjuangan Menembus Akses',
+        location: 'Lingkungan Pesisir & Pendidikan Dasar',
+        quote: 'Keterbatasan ekonomi di pesisir mengajarkan bahwa laut hanya bisa ditaklukkan dengan keberanian, sementara masa depan hanya bisa direbut lewat pendidikan.',
+        description: 'Tumbuh dalam keluarga nelayan dengan ritme hidup harian yang keras serta lingkungan yang minim akses pendidikan tinggi, Fatah Yasin belajar sejak dini mengenai arti ketahanan (resilience) dan kerja keras. Di tengah keterbatasan sarana, buku-buku pinjaman dan bacaan sederhana menjadi jendela pertama yang membuka kesadaran.',
+        highlights: ['Menjadikan pendidikan dan kebiasaan membaca sebagai instrumen mobilitas sosial.', 'Membangun etos kemandirian dan kepekaan terhadap realitas masyarakat akar rumput.']
+      },
+      {
+        id: 'pbhmi',
+        era: 'Fase II &bull; Kawah Candradimuka Pergerakan',
+        title: 'Kepemimpinan Nasional sebagai Sekjen PB HMI',
+        location: 'Pengurus Besar Himpunan Mahasiswa Islam',
+        quote: 'Organisasi mahasiswa bukan sekadar panggung retorika, melainkan laboratorium gagasan tempat karakter kepemimpinan bangsa ditempa.',
+        description: 'Melalui proses kaderisasi berjenjang, Fatah Yasin dipercaya mengemban amanah strategis sebagai Sekretaris Jenderal Pengurus Besar Himpunan Mahasiswa Islam (PB HMI). Pada fase ini, ia berada di jantung dinamika pemikiran keislaman dan keindonesiaan.',
+        highlights: ['Mengonsolidasikan manajemen organisasi mahasiswa berskala nasional.', 'Merawat dialektika pemikiran Islam inklusif, kebangsaan, dan kaderisasi berbasis literasi.']
+      },
+      {
+        id: 'bulog',
+        era: 'Fase III &bull; Tata Kelola Korporasi & Kelembagaan',
+        title: 'Pengabdian Birokrasi & Kepemimpinan Kopel Bulog',
+        location: 'Perum Bulog & Koperasi Pegawai (Kopel Bulog)',
+        quote: 'Idealisme yang ditempa di ruang diskusi harus diuji dalam tata kelola institusi yang akuntabel, transparan, dan melayani.',
+        description: 'Berbekal kematangan berorganisasi, Fatah Yasin meniti pengabdian profesional di Perum Bulog hingga dipercaya memimpin sebagai Ketua Pengurus Koperasi Pegawai dan Pensiunan Perum Bulog (Kopel Bulog Pusat).',
+        highlights: ['Memimpin modernisasi layanan dan tata kelola unit usaha perdagangan serta jasa koperasi.', 'Menjembatani jejaring kelembagaan antara korporasi, koperasi, dan institusi pendidikan.']
+      },
+      {
+        id: 'literasi',
+        era: 'Fase IV &bull; Warisan Gagasan (Legacy)',
+        title: 'Gerakan Merawat Tradisi Literasi & Rumah Gagasan',
+        location: 'Pustaka Pemikiran Islam & Kebangsaan',
+        quote: 'Investasi terbaik seorang pembelajar bukanlah tumpukan benda, melainkan rak buku yang terus hidup dan gagasan yang diwariskan.',
+        description: 'Di tengah kesibukan manajerial, kecintaan terhadap buku tidak pernah surut. Melalui kurasi bacaan dan pengarsipan sejarah pergerakan secara konsisten.',
+        highlights: ['Mendorong pengarsipan digital sejarah pergerakan dan naskah pemikiran kader.', 'Membangun ekosistem kurasi bacaan kritis untuk generasi penerus.']
+      }
+    ];
+
+    const essaysData = [
+      {
+        id: 'esai-caknur',
+        category: 'Arsip Sejarah & Pemikiran',
+        date: '2 Januari 1970 / Arsip Digital',
+        readTime: '10 Menit Baca',
+        title: 'Pembaharuan Demi Integrasi Umat (1970)',
+        subtitle: 'Dokumentasi historis pemikiran Nurcholish Madjid (Cak Nur) mengenai sekularisasi positif dan diferensiasi sosial.',
+        keyQuote: 'Dengan memilah ajaran transenden yang mutlak dan produk pemikiran historis-manusiawi yang relatif, umat Islam akan mampu menjadi masyarakat modern yang progresif.',
+        paragraphs: [
+          'Jumat Kliwon, 2 Januari 1970. Ketua Umum Pengurus Besar Himpunan Mahasiswa Islam (PB HMI), Nurcholish Madjid (31 tahun), mempresentasikan makalah berjudul “Keharusan Pembaharuan Pemikiran Islam dan Masalah Integrasi Umat” dalam pertemuan gabungan empat organisasi Islam (HMI, PII, GPI/GPII, dan PERSAMI) di Sekretariat Pelajar Islam Indonesia (PII), Jalan Menteng Raya No. 58, Jakarta.',
+          'Cak Nur, begitu ia akrab disapa, mencetuskan gagasan sekularisasi. Bukan ideologi anti-agama (sekularisme), tetapi proses diferensiasi sosial dan kultural untuk melepaskan urusan duniawi, seperti politik, ekonomi, sains, dan teknologi, dari sakralitas yang berlebihan.',
+          'Menurutnya, sekularisasi berarti ‘mendunia-wiyahkan’ persoalan-persoalan dunia agar dapat dikelola secara rasional, objektif, dan terbuka terhadap perubahan zaman. Landasan teologis dari gagasan tersebut berakar pada prinsip tauhid (La ilaha illallah).',
+          'Dengan memilah ajaran transenden yang mutlak dan produk pemikiran historis-manusiawi yang relatif, umat Islam akan mampu menjadi masyarakat modern yang progresif, adaptif, serta berpartisipasi aktif dalam pembangunan nasional.'
+        ]
+      },
+      {
+        id: 'esai-1',
+        category: 'Literasi & Historiografi',
+        date: 'Catatan Kuratorial I',
+        readTime: '4 Menit Baca',
+        title: 'Melawan Lupa: Mengapa Sejarah Pergerakan Harus Ditulis dan Diarsipkan',
+        subtitle: 'Refleksi atas rapuhnya ingatan lisan organisasi dan urgensi membangun monumen gagasan tertulis.',
+        keyQuote: 'Banyak gerakan besar lahir dari ruang diskusi yang bernas, namun perlahan memudar karena tidak ada yang tekun mencatatnya menjadi arsip pengetahuan.',
+        paragraphs: [
+          'Dalam tradisi organisasi mahasiswa dan pergerakan sosial di Indonesia, kekuatan lisan sering kali jauh lebih dominan daripada tradisi tulisan. Pidato-pidato berapi-api dan perdebatan larut malam di sekretariat mampu menggerakkan perubahan.',
+          'Mengutip kegelisahan para pegiat arsip dan literasi, apa yang tidak ditulis pada akhirnya akan hilang ditelan angin, dan apa yang tidak dibukukan akan lenyap menjadi debu sejarah.',
+          'Karena itu, merawat tradisi literasi bukan sekadar hobi mengumpulkan buku di lemari kaca, melainkan kerja peradaban untuk merawat ingatan kolektif.'
+        ]
+      },
+      {
+        id: 'esai-2',
+        category: 'Mobilitas Sosial',
+        date: 'Catatan Kuratorial II',
+        readTime: '5 Menit Baca',
+        title: 'Dari Pesisir Menuju Pusat Gagasan: Buku sebagai Tangga Mobilitas Sosial',
+        subtitle: 'Bagaimana akses terhadap bacaan bermutu mampu meruntuhkan tembok keterbatasan latar belakang ekonomi.',
+        keyQuote: 'Buku tidak pernah bertanya dari keluarga mana pembacanya berasal; ia memberikan kedalaman wawasan yang sama kepada anak nelayan maupun anak pejabat.',
+        paragraphs: [
+          'Tumbuh di lingkungan pesisir dengan akses pendidikan yang terbatas mengajarkan satu pelajaran mendasar: ketimpangan terbesar bukanlah semata ketimpangan materi, melainkan ketimpangan akses terhadap pengetahuan.',
+          'Perjumpaan dengan buku-buku pemikiran sosial dan keislaman mengubah cara pandang tersebut secara radikal, memberikan bahasa untuk memahami persoalan masyarakat sekaligus keberanian untuk terlibat.'
+        ]
+      }
+    ];
+
+    const booksData = [
+      {
+        title: 'Islam Doktrin dan Peradaban',
+        author: 'Nurcholish Madjid (Cak Nur)',
+        category: 'Pemikiran Islam',
+        year: '1992',
+        spineColor: 'bg-[#0F4C3A]',
+        note: 'Karya monumental yang meletakkan fondasi pemahaman keislaman yang kosmopolitan, rasional, dan membumi dalam konteks keindonesiaan.'
+      },
+      {
+        title: 'Nilai-Nilai Dasar Perjuangan (NDP) & Tafsir Sejarah',
+        author: 'Nurcholish Madjid, Endang Saifuddin Anshari, dkk.',
+        category: 'Sejarah & Pergerakan',
+        year: 'Edisi Kurasi',
+        spineColor: 'bg-[#1D3557]',
+        note: 'Kerangka filosofis utama bagi setiap kader dalam memahami hubungan antara tauhid, kemanusiaan, ilmu pengetahuan, dan keadilan sosial.'
+      },
+      {
+        title: 'Pergolakan Pemikiran Islam: Catatan Harian Ahmad Wahib',
+        author: 'Ahmad Wahib (Ed. Djohan Effendi & Ismed Natsir)',
+        category: 'Pemikiran Islam',
+        year: '1981',
+        spineColor: 'bg-[#5C3A21]',
+        note: 'Potret kejujuran intelektual seorang aktivis muda yang berani bertanya, menggugat kemapanan nalar, dan mencari kebenaran dengan tulus.'
+      }
+    ];
+
+    let activeTimelineIndex = 0;
+
+    function renderTimeline() {
+      const tabsContainer = document.getElementById('timeline-tabs');
+      const detailContainer = document.getElementById('timeline-detail');
+      tabsContainer.innerHTML = timelineData.map((item, index) => {
+        const isActive = index === activeTimelineIndex;
+        return `
+          <button type="button" onclick="selectTimeline(${index})"
+            class="w-full text-left p-4 sm:p-5 rounded-xl border transition-all cursor-pointer ${
+              isActive ? 'bg-emeraldDeep text-paper border-emeraldDeep shadow-md' : 'bg-paper-card text-charcoal border-paper-border hover:border-emeraldDeep/50'
+            }">
+            <span class="block text-[11px] uppercase tracking-[0.15em] ${isActive ? 'text-paper/80' : 'text-goldAccent font-semibold'}">${item.era}</span>
+            <span class="block font-serifDisplay text-lg sm:text-xl font-bold mt-1 leading-snug">${item.title}</span>
+          </button>
+        `;
+      }).join('');
+
+      const activeItem = timelineData[activeTimelineIndex];
+      detailContainer.innerHTML = `
+        <div class="flex flex-wrap items-center justify-between gap-2 pb-4 mb-5 border-b border-paper-border">
+          <span class="text-xs font-semibold uppercase tracking-[0.16em] text-emeraldDeep">${activeItem.era}</span>
+          <span class="px-3 py-1 rounded-full bg-paper-warm text-charcoal-muted text-xs font-medium border border-paper-border">${activeItem.location}</span>
+        </div>
+        <h3 class="font-serifDisplay text-2xl sm:text-3xl font-bold text-charcoal leading-tight">${activeItem.title}</h3>
+        <blockquote class="my-5 pl-4 border-l-2 border-emeraldDeep font-serifBody italic text-sm sm:text-base text-charcoal-muted bg-paper-warm/50 py-3 pr-4 rounded-r-lg">&ldquo;${activeItem.quote}&rdquo;</blockquote>
+        <p class="font-serifBody text-sm sm:text-base text-charcoal-muted leading-relaxed">${activeItem.description}</p>
+        <div class="mt-6 pt-5 border-t border-paper-border">
+          <span class="block text-xs font-semibold uppercase tracking-wider text-charcoal mb-3">Titik Fokus &amp; Pembelajaran Utama:</span>
+          <ul class="space-y-2">
+            ${activeItem.highlights.map(point => `<li class="flex items-start gap-2.5 text-xs sm:text-sm text-charcoal-muted"><span class="text-emeraldDeep font-bold mt-0.5">&#10003;</span><span>${point}</span></li>`).join('')}
+          </ul>
+        </div>
+      `;
+    }
+
+    function selectTimeline(index) {
+      activeTimelineIndex = index;
+      renderTimeline();
+    }
+
+    let currentEssayQuote = '';
+    let readerFontSize = 17;
+
+    function renderEssays() {
+      const grid = document.getElementById('essays-grid');
+      grid.innerHTML = essaysData.map((essay) => `
+        <article class="bg-paper-card border border-paper-border rounded-2xl p-6 sm:p-7 shadow-editorial flex flex-col justify-between hover:border-emeraldDeep/40 transition-all group">
+          <div>
+            <div class="flex items-center justify-between gap-2 text-xs mb-4">
+              <span class="px-2.5 py-1 rounded-md bg-emeraldDeep-tint text-emeraldDeep font-semibold">${essay.category}</span>
+              <span class="text-charcoal-soft">${essay.readTime}</span>
+            </div>
+            <h3 class="font-serifDisplay text-2xl font-bold text-charcoal leading-snug group-hover:text-emeraldDeep transition-colors">${essay.title}</h3>
+            <p class="mt-3 font-serifBody text-sm text-charcoal-muted leading-relaxed">${essay.subtitle}</p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-paper-border flex items-center justify-between">
+            <span class="text-xs text-charcoal-soft">${essay.date}</span>
+            <button type="button" onclick="openEssayModal('${essay.id}')" class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-emeraldDeep hover:text-emeraldDeep-dark cursor-pointer">
+              <span>Baca Naskah</span>
+            </button>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function openEssayModal(essayId) {
+      const essay = essaysData.find(e => e.id === essayId);
+      if (!essay) return;
+
+      document.getElementById('modal-essay-category').textContent = essay.category;
+      document.getElementById('modal-essay-readtime').textContent = essay.readTime;
+      document.getElementById('modal-essay-date').textContent = essay.date;
+      document.getElementById('modal-essay-title').textContent = essay.title;
+      document.getElementById('modal-essay-subtitle').textContent = essay.subtitle;
+
+      currentEssayQuote = `"${essay.keyQuote}" — Fatah Yasin (${essay.title})`;
+      document.getElementById('copy-quote-text').textContent = 'Salin Kutipan Utama Esai';
+
+      const contentEl = document.getElementById('modal-essay-content');
+      contentEl.style.fontSize = `${readerFontSize}px`;
+      
+      // DISESUAIKAN DENGAN NAMA FILE DI GITHUB: cak-nur.jpeg & caknur-mt.jpeg
+      let extraVisualHTML = '';
+      if (essay.id === 'esai-caknur') {
+        extraVisualHTML = `
+          <div class="my-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-3 rounded-xl bg-paper-warm border border-paper-border text-center">
+              <img src="cak-nur.jpeg" alt="Dokumen Arsip Pembaruan Pemikiran Islam" class="w-full h-56 object-cover rounded-lg shadow-sm mb-2" />
+              <span class="text-[11px] text-charcoal-soft italic block">Dokumen Naskah &amp; Catatan Pembaruan (Cak Nur)</span>
+            </div>
+            <div class="p-3 rounded-xl bg-paper-warm border border-paper-border text-center">
+              <img src="caknur-mt.jpeg" alt="Pertemuan Diskusi Pemikiran Islam" class="w-full h-56 object-cover rounded-lg shadow-sm mb-2" />
+              <span class="text-[11px] text-charcoal-soft italic block">Arsip Visual: Diskusi &amp; Pergulatan Intelektual Kader</span>
+            </div>
+          </div>
+        `;
+      }
+
+      contentEl.innerHTML = `
+        <blockquote class="p-4 sm:p-5 rounded-xl bg-paper-warm border-l-4 border-emeraldDeep italic text-charcoal-muted">&ldquo;${essay.keyQuote}&rdquo;</blockquote>
+        ${extraVisualHTML}
+        ${essay.paragraphs.map(p => `<p>${p}</p>`).join('')}
+      `;
+
+      const modal = document.getElementById('essay-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeEssayModal() {
+      const modal = document.getElementById('essay-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    function renderBooks() {
+      const grid = document.getElementById('books-grid');
+      grid.innerHTML = booksData.map((book) => `
+        <div class="bg-paper-card border border-paper-border rounded-2xl p-6 shadow-editorial flex flex-col justify-between">
+          <div>
+            <div class="flex items-start gap-4 mb-5">
+              <div class="w-16 h-24 shrink-0 rounded-lg ${book.spineColor} text-paper p-2.5 flex flex-col justify-between shadow-book book-spine">
+                <span class="text-[8px] uppercase tracking-widest text-paper/70 leading-tight">Pustaka</span>
+                <span class="font-serifDisplay text-xs font-bold leading-tight line-clamp-3">${book.title}</span>
+              </div>
+              <div>
+                <span class="inline-block px-2.5 py-0.5 rounded-md bg-paper-warm text-emeraldDeep text-[11px] font-semibold border border-paper-border mb-1.5">${book.category}</span>
+                <h3 class="font-serifDisplay text-xl font-bold text-charcoal leading-snug">${book.title}</h3>
+                <p class="text-xs text-charcoal-soft mt-1">${book.author} &bull; <span class="italic">${book.year}</span></p>
+              </div>
+            </div>
+            <div class="p-3.5 rounded-xl bg-paper-warm/70 border border-paper-border/80">
+              <span class="block text-[10px] font-semibold uppercase tracking-wider text-goldAccent mb-1">Catatan Kuratorial:</span>
+              <p class="font-serifBody text-xs sm:text-sm text-charcoal-muted leading-relaxed">${book.note}</p>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderTimeline();
+      renderEssays();
+      renderBooks();
+
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+      document.getElementById('close-modal-btn').addEventListener('click', closeEssayModal);
+      document.getElementById('modal-backdrop').addEventListener('click', closeEssayModal);
+
+      const contentEl = document.getElementById('modal-essay-content');
+      document.getElementById('font-increase').addEventListener('click', () => {
+        if (readerFontSize < 22) { readerFontSize += 1; contentEl.style.fontSize = `${readerFontSize}px`; }
+      });
+      document.getElementById('font-decrease').addEventListener('click', () => {
+        if (readerFontSize > 14) { readerFontSize -= 1; contentEl.style.fontSize = `${readerFontSize}px`; }
+      });
+    });
+  </script>
 </body>
 </html>
