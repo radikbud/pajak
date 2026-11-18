@@ -126,7 +126,7 @@
                     </div>
                 </div>
 
-                <!-- Kalkulator Pajak Cepat -->
+                <!-- Kalkulator Pajak Cepat (Lengkap dengan PPh 21, NPWP, & Dead Button 50% Bruto) -->
                 <section class="space-y-3 bg-slate-50 border border-slate-200 p-4 rounded-2xl">
                     <div class="flex items-center justify-between border-b border-slate-200 pb-2">
                         <h3 class="text-xs font-bold uppercase tracking-wider text-google-textPrimary flex items-center">
@@ -135,26 +135,55 @@
                         </h3>
                     </div>
                     <div class="space-y-3 pt-1">
+                        <!-- Pilih Jenis Pajak -->
                         <div>
                             <label for="calcType" class="block text-[11px] font-bold text-google-textSec mb-1">Pilih Jenis Pajak:</label>
                             <select id="calcType" class="w-full text-xs bg-white border border-slate-300 rounded-lg p-2.5 font-medium text-google-textPrimary focus:outline-none focus:border-indigo-600">
+                                <option value="pph21">PPh Pasal 21 (Karyawan / Pegawai - TER / Pasal 17)</option>
                                 <option value="umkm">PPh Final UMKM 0,5% (PP 55/2022)</option>
                                 <option value="ppn_umum">PPN 12% — Non-Mewah (DPP 11/12 • Efektif 11%)</option>
                                 <option value="ppn_mewah">PPN 12% — Barang Mewah (Tarif Penuh 12%)</option>
-                                <option value="pph23">PPh Pasal 23 (Jasa / Sewa Non-Bangunan 2%)</option>
+                                <option value="pph23_jasa">PPh Pasal 23 (Jasa / Sewa Non-Bangunan 2%)</option>
+                                <option value="pph23_dividen">PPh Pasal 23 (Dividen / Bunga / Royalti 15%)</option>
                                 <option value="pph4_sewa">PPh Pasal 4(2) Final (Sewa Tanah/Bangunan 10%)</option>
                             </select>
                         </div>
+
+                        <!-- Dropdown Status NPWP -->
                         <div>
-                            <label id="calcLabel" for="calcInput" class="block text-[11px] font-bold text-google-textSec mb-1">Omset / Peredaran Bruto Bulanan (Rp):</label>
-                            <input type="text" inputmode="numeric" id="calcInput" placeholder="Contoh: 15.000.000" class="w-full text-xs bg-white border border-slate-300 rounded-lg p-2.5 font-medium text-google-textPrimary focus:outline-none focus:border-indigo-600">
+                            <label for="calcNpwp" class="block text-[11px] font-bold text-google-textSec mb-1">Status Kepemilikan NPWP / NIK:</label>
+                            <select id="calcNpwp" class="w-full text-xs bg-white border border-slate-300 rounded-lg p-2.5 font-medium text-google-textPrimary focus:outline-none focus:border-indigo-600">
+                                <option value="ada">Memiliki NPWP / NIK Valid (Tarif Normal)</option>
+                                <option value="tidak">Tidak Memiliki NPWP (Penalti Tarif Lebih Tinggi)</option>
+                            </select>
                         </div>
-                        <div class="bg-indigo-900 text-white p-3 rounded-xl flex items-center justify-between">
-                            <div>
+
+                        <!-- Dropdown Opsi Penghitungan Bruto (50% / Normal) dengan Dead Button Logic -->
+                        <div>
+                            <label for="calcBrutoOption" class="block text-[11px] font-bold text-google-textSec mb-1">Opsi Penghitungan Dasar Bruto:</label>
+                            <select id="calcBrutoOption" class="w-full text-xs bg-white border border-slate-300 rounded-lg p-2.5 font-medium text-google-textPrimary focus:outline-none focus:border-indigo-600 disabled:bg-slate-200 disabled:text-slate-400 disabled:cursor-not-allowed">
+                                <option value="normal">100% dari Jumlah Bruto (Normal)</option>
+                                <option value="50persen">50% dari Jumlah Bruto (Khusus Jasa Tertentu / Aturan Khusus)</option>
+                            </select>
+                            <p id="infoDeadButton" class="text-[10px] text-rose-600 hidden mt-1">
+                                <i class="fa-solid fa-triangle-exclamation"></i> Opsi ini dikunci (Dead Button) karena jenis pajak terpilih tidak menggunakan skema 50% bruto.
+                            </p>
+                        </div>
+
+                        <!-- Input Nominal Bruto / Penghasilan -->
+                        <div>
+                            <label id="calcLabel" for="calcInput" class="block text-[11px] font-bold text-google-textSec mb-1">Penghasilan Bruto / Gaji Bulanan (Rp):</label>
+                            <input type="text" inputmode="numeric" id="calcInput" placeholder="Contoh: 7.500.000" class="w-full text-xs bg-white border border-slate-300 rounded-lg p-2.5 font-medium text-google-textPrimary focus:outline-none focus:border-indigo-600">
+                        </div>
+
+                        <!-- Hasil Estimasi & Keterangan Tarif -->
+                        <div class="bg-indigo-900 text-white p-3.5 rounded-xl space-y-1">
+                            <div class="flex items-center justify-between">
                                 <span class="block text-[10px] text-indigo-200 uppercase font-semibold">Estimasi Pajak Terutang:</span>
-                                <span id="calcResult" class="text-base font-black tracking-wide">Rp 0</span>
+                                <span class="text-[9px] bg-indigo-700 text-indigo-100 font-bold px-2 py-0.5 rounded-md">ESTIMASI</span>
                             </div>
-                            <span class="text-[9px] bg-indigo-700 text-indigo-100 font-bold px-2 py-1 rounded-md">ESTIMASI</span>
+                            <span id="calcResult" class="block text-lg font-black tracking-wide">Rp 0</span>
+                            <span id="calcInfoTarif" class="block text-[10px] text-indigo-200 font-normal">Tarif standar berlaku</span>
                         </div>
                     </div>
                 </section>
@@ -171,7 +200,7 @@
                     <!-- List Kalender Vertikal -->
                     <div class="space-y-2.5">
                         
-                        <!-- Tgl 15 (Penyeragaman Setor PPh Masa & Setor Sendiri per PMK 81/2024) -->
+                        <!-- Tgl 15 -->
                         <div id="card-tgl-15" class="p-3.5 rounded-xl border border-google-border bg-white flex items-start space-x-3.5 transition-all">
                             <div class="flex-shrink-0 w-12 text-center py-1 rounded-lg bg-amber-50 border border-amber-100">
                                 <span class="block text-xs font-semibold text-amber-600 uppercase">TGL</span>
@@ -258,7 +287,7 @@
                                 <span class="text-[10px] font-medium text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full">Karyawan & OP</span>
                             </div>
                             <p class="text-[11px] text-google-textSec leading-relaxed mb-3">
-                                Pajak atas gaji, upah, honorarium, dan jasa orang pribadi menggunakan skema TER (PMK 168/2023).
+                                Pajak atas gaji, upah, honorarium, dan jasa orang pribadi menggunakan skema TER (PMK 168/2023). Tanpa NPWP dikenakan kenaikan tarif 20%.
                             </p>
                             <div class="pt-2 border-t border-gray-100 flex justify-between text-[10px] font-medium text-google-textSec">
                                 <span>Setor: <strong class="text-google-textPrimary">Tgl 15</strong></span>
@@ -273,7 +302,7 @@
                                 <span class="text-[10px] font-medium text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">Jasa & Modal B2B</span>
                             </div>
                             <p class="text-[11px] text-google-textSec leading-relaxed mb-3">
-                                Pemotongan atas sewa harta non-bangunan (2%), jasa teknik/manajemen (2%), serta dividen & bunga (15%).
+                                Pemotongan atas sewa harta non-bangunan (2%), jasa teknik/manajemen (2%), serta dividen & bunga (15%). Tanpa NPWP dikenakan penalti 100% lebih tinggi.
                             </p>
                             <div class="pt-2 border-t border-gray-100 flex justify-between text-[10px] font-medium text-google-textSec">
                                 <span>Setor: <strong class="text-google-textPrimary">Tgl 15</strong></span>
@@ -373,16 +402,15 @@
         </svg>
     </a>
 
-    <!-- Script JavaScript untuk Alarm Pajak & Kalkulator Pajak -->
+    <!-- Script JavaScript untuk Alarm & Kalkulator -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // --- 1. ALARM PAJAK OTOMATIS (AKURAT PER KALENDER) ---
+            // --- 1. ALARM PAJAK OTOMATIS ---
             const now = new Date();
             const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
             const currentDay = now.getDate();
             const lastDayOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
 
-            // Tampilkan tanggal akhir bulan aktual pada kartu jadwal
             document.getElementById("card-akhir-num").innerText = "TGL " + lastDayOfMonth;
 
             const deadlines = [
@@ -431,54 +459,124 @@
                 activeCard.classList.add(...upcoming.ringClass);
             }
 
-            // --- 2. KALKULATOR PAJAK CEPAT ---
+            // --- 2. KALKULATOR PAJAK CEPAT (DENGAN PPh 21, NPWP, & DEAD BUTTON 50% BRUTO) ---
             const calcType = document.getElementById("calcType");
+            const calcNpwp = document.getElementById("calcNpwp");
+            const calcBrutoOption = document.getElementById("calcBrutoOption");
+            const infoDeadButton = document.getElementById("infoDeadButton");
             const calcInput = document.getElementById("calcInput");
             const calcLabel = document.getElementById("calcLabel");
             const calcResult = document.getElementById("calcResult");
+            const calcInfoTarif = document.getElementById("calcInfoTarif");
 
             function parseRawNumber(formattedStr) {
                 const digitsOnly = formattedStr.replace(/\D/g, "");
                 return digitsOnly ? parseInt(digitsOnly, 10) : 0;
             }
 
+            function updateDropdownBehaviors() {
+                const type = calcType.value;
+                // Aturan Dead Button: Opsi penghitungan 50% dari bruto hanya aktif untuk PPh Pasal 23 Jasa
+                if (type === 'pph23_jasa') {
+                    calcBrutoOption.disabled = false;
+                    infoDeadButton.classList.add('hidden');
+                } else {
+                    calcBrutoOption.value = 'normal';
+                    calcBrutoOption.disabled = true;  // Dead Button / Disabled
+                    infoDeadButton.classList.remove('hidden');
+                }
+            }
+
             function calculateTax() {
                 const val = parseRawNumber(calcInput.value);
-                let tax = 0;
                 const type = calcType.value;
+                const npwpStatus = calcNpwp.value;
+                const brutoOpt = calcBrutoOption.value;
 
-                if (type === 'umkm') {
-                    tax = val * 0.005; // 0.5%
-                } else if (type === 'ppn_umum') {
-                    tax = (val * (11 / 12)) * 0.12;
-                } else if (type === 'ppn_mewah') {
-                    tax = val * 0.12; // 12% penuh
-                } else if (type === 'pph23') {
-                    tax = val * 0.02; // 2%
-                } else if (type === 'pph4_sewa') {
-                    tax = val * 0.10; // 10%
+                let dpp = val;
+                if (brutoOpt === '50persen' && !calcBrutoOption.disabled) {
+                    dpp = val * 0.5;
                 }
 
+                let baseRate = 0.05;
+                let rateDesc = "";
+
+                if (type === 'pph21') {
+                    // Simulasi perhitungan PPh 21 TER / Lapis awal Pasal 17 (5%)
+                    baseRate = 0.05;
+                    rateDesc = "Tarif Efektif Rata-rata (TER) / Lapis 1 Pasal 17 (5%)";
+                } else if (type === 'umkm') {
+                    baseRate = 0.005;
+                    rateDesc = "Tarif Final 0,5% (PP 55/2022)";
+                } else if (type === 'ppn_umum') {
+                    dpp = val * (11 / 12);
+                    baseRate = 0.12;
+                    rateDesc = "PPN 12% dengan DPP Nilai Lain 11/12 (Efektif 11%)";
+                } else if (type === 'ppn_mewah') {
+                    baseRate = 0.12;
+                    rateDesc = "Tarif Penuh PPN 12%";
+                } else if (type === 'pph23_jasa') {
+                    baseRate = 0.02;
+                    rateDesc = brutoOpt === '50persen' ? "Tarif 2% dari (50% x Bruto)" : "Tarif Standar 2%";
+                } else if (type === 'pph23_dividen') {
+                    baseRate = 0.15;
+                    rateDesc = "Tarif Standar 15%";
+                } else if (type === 'pph4_sewa') {
+                    baseRate = 0.10;
+                    rateDesc = "Tarif Final 10%";
+                }
+
+                // Penyesuaian tarif berdasarkan NPWP
+                if (npwpStatus === 'tidak') {
+                    if (type.startsWith('pph23')) {
+                        baseRate = baseRate * 2; // Naik 100% lebih tinggi
+                        rateDesc += " (Tanpa NPWP: Naik 100% menjadi " + (baseRate * 100) + "%)";
+                    } else if (type === 'pph21') {
+                        baseRate = baseRate * 1.2; // Pasal 21 tanpa NPWP naik 20%
+                        rateDesc += " (Tanpa NPWP: Naik 20% menjadi " + (baseRate * 100) + "%)";
+                    } else if (type === 'umkm') {
+                        baseRate = baseRate * 2; // UMKM tanpa NPWP naik 100% menjadi 1%
+                        rateDesc += " (Tanpa NPWP: Naik 100% menjadi 1%)";
+                    } else {
+                        rateDesc += " (Status NPWP tidak berpengaruh pada jenis pajak ini)";
+                    }
+                } else {
+                    rateDesc += " (Memiliki NPWP / NIK Valid)";
+                }
+
+                let tax = dpp * baseRate;
+
                 calcResult.innerText = "Rp " + Math.round(tax).toLocaleString('id-ID');
+                calcInfoTarif.innerText = rateDesc;
             }
 
             calcType.addEventListener("change", function() {
                 const labels = {
+                    pph21: "Penghasilan Bruto / Gaji Bulanan (Rp):",
                     umkm: "Omset / Peredaran Bruto Bulanan (Rp):",
                     ppn_umum: "Harga Jual / Penggantian Non-Mewah (Rp):",
                     ppn_mewah: "Harga Jual Barang Mewah / DPP (Rp):",
-                    pph23: "Jumlah Bruto Penghasilan Jasa/Sewa (Rp):",
+                    pph23_jasa: "Jumlah Bruto Penghasilan Jasa/Sewa (Rp):",
+                    pph23_dividen: "Jumlah Bruto Dividen / Bunga / Royalti (Rp):",
                     pph4_sewa: "Nilai Bruto Sewa Tanah/Bangunan (Rp):"
                 };
                 calcLabel.innerText = labels[calcType.value] || "Dasar Pengenaan Pajak (Rp):";
+                updateDropdownBehaviors();
                 calculateTax();
             });
+
+            calcNpwp.addEventListener("change", calculateTax);
+            calcBrutoOption.addEventListener("change", calculateTax);
 
             calcInput.addEventListener("input", function(e) {
                 const rawVal = parseRawNumber(e.target.value);
                 e.target.value = rawVal > 0 ? rawVal.toLocaleString('id-ID') : "";
                 calculateTax();
             });
+
+            // Inisialisasi awal
+            updateDropdownBehaviors();
+            calculateTax();
         });
     </script>
 </body>
