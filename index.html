@@ -16,12 +16,12 @@
     <meta property="og:type" content="website">
 
     <!-- PWA Meta & Manifest -->
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="/pajak/manifest.json">
     <meta name="theme-color" content="#1a73e8">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Buku Saku Pajak">
-    <link rel="apple-touch-icon" href="/icon-192.png">
+    <link rel="apple-touch-icon" href="/pajak/icon-192.png">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -134,7 +134,8 @@
                         <button
                             id="btn-home-screen"
                             type="button"
-                            class="inline-flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-google-textPrimary border border-slate-300 rounded-lg px-3 py-1.5 text-[11px] font-bold transition cursor-pointer"
+                            style="display: none;"
+                            class="items-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-google-textPrimary border border-slate-300 rounded-lg px-3 py-1.5 text-[11px] font-bold transition cursor-pointer"
                         >
                             <span>📲</span>
                             <span>Pasang ke Home Screen</span>
@@ -447,7 +448,7 @@
             // --- 0. REGISTRASI SERVICE WORKER (PWA) ---
             if ("serviceWorker" in navigator) {
                 window.addEventListener("load", function() {
-                    navigator.serviceWorker.register("/sw.js").catch(function() {});
+                    navigator.serviceWorker.register("/pajak/sw.js").catch(function() {});
                 });
             }
 
@@ -620,7 +621,7 @@
             updateDropdownBehaviors();
             calculateTax();
 
-            // --- 3. TOMBOL PASANG KE HOME SCREEN ---
+            // --- 3. TOMBOL PASANG KE HOME SCREEN (LANGSUNG PROMPT BROWSER, TANPA ALERT) ---
             const btnHomeScreen = document.getElementById("btn-home-screen");
             if (btnHomeScreen) {
                 let deferredPrompt = null;
@@ -628,32 +629,22 @@
                     window.matchMedia("(display-mode: standalone)").matches ||
                     window.navigator.standalone === true;
 
-                if (isStandalone) {
-                    btnHomeScreen.style.display = "none";
-                } else {
+                if (!isStandalone) {
                     window.addEventListener("beforeinstallprompt", function(e) {
                         e.preventDefault();
                         deferredPrompt = e;
+                        btnHomeScreen.style.display = "inline-flex";
                     });
 
                     btnHomeScreen.addEventListener("click", async function() {
-                        if (deferredPrompt) {
-                            deferredPrompt.prompt();
-                            const choice = await deferredPrompt.userChoice;
-                            if (choice && choice.outcome === "accepted") {
-                                btnHomeScreen.style.display = "none";
-                                catatKlikWA("pasang_home_screen");
-                            }
-                            deferredPrompt = null;
-                            return;
+                        if (!deferredPrompt) return;
+                        deferredPrompt.prompt();
+                        const choice = await deferredPrompt.userChoice;
+                        if (choice && choice.outcome === "accepted") {
+                            btnHomeScreen.style.display = "none";
+                            catatKlikWA("pasang_home_screen");
                         }
-
-                        const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
-                        if (isIos) {
-                            alert("Di iPhone/Safari: ketuk ikon Bagikan (kotak panah ke atas) lalu pilih 'Tambah ke Layar Utama'.");
-                        } else {
-                            alert("Ketuk menu titik tiga (⋮) di browser lalu pilih 'Instal aplikasi' atau 'Tambahkan ke Layar utama'.");
-                        }
+                        deferredPrompt = null;
                     });
 
                     window.addEventListener("appinstalled", function() {
