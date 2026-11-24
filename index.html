@@ -631,6 +631,8 @@
                 if (isStandalone) {
                     btnHomeScreen.style.display = "none";
                 } else {
+                    const originalText = btnHomeScreen.innerHTML;
+
                     window.addEventListener("beforeinstallprompt", function(e) {
                         e.preventDefault();
                         deferredPrompt = e;
@@ -638,16 +640,23 @@
                     });
 
                     btnHomeScreen.addEventListener("click", async function() {
-                        if (!deferredPrompt) return;
-                        deferredPrompt.prompt();
-                        const choice = await deferredPrompt.userChoice;
-                        if (choice && choice.outcome === "accepted") {
-                            btnHomeScreen.style.display = "none";
-                            if (typeof catatKlikWA === "function") {
-                                catatKlikWA("pasang_home_screen");
+                        if (deferredPrompt) {
+                            deferredPrompt.prompt();
+                            const choice = await deferredPrompt.userChoice;
+                            if (choice && choice.outcome === "accepted") {
+                                btnHomeScreen.style.display = "none";
+                                if (typeof catatKlikWA === "function") {
+                                    catatKlikWA("pasang_home_screen");
+                                }
                             }
+                            deferredPrompt = null;
+                            return;
                         }
-                        deferredPrompt = null;
+
+                        btnHomeScreen.innerHTML = "<span>ℹ️</span><span>Gunakan menu browser untuk pasang</span>";
+                        setTimeout(function() {
+                            btnHomeScreen.innerHTML = originalText;
+                        }, 3000);
                     });
 
                     window.addEventListener("appinstalled", function() {
