@@ -15,6 +15,14 @@
     <meta property="og:description" content="Panduan rutin penyetoran, pelaporan, dan aturan pasal perpajakan terbaru era Coretax.">
     <meta property="og:type" content="website">
 
+    <!-- PWA Meta & Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#1a73e8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Buku Saku Pajak">
+    <link rel="apple-touch-icon" href="/icon-192.png">
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -119,10 +127,18 @@
                     <p class="text-xs text-google-textSec mt-1">
                         Panduan rutin penyetoran, pelaporan, dan aturan pasal perpajakan era Coretax (PMK 81/2024).
                     </p>
-                    <div class="mt-2.5 inline-block bg-blue-50/80 border border-blue-100 rounded-lg px-3 py-1.5">
-                        <p class="text-[11px] font-medium text-google-blue">
-                            Disusun & diterbitkan oleh <strong>Budi Gunawan Sutomo</strong>
-                        </p>
+                    <div class="mt-2.5 flex flex-wrap items-center gap-2">
+                        <span class="inline-block bg-blue-50/80 border border-blue-100 rounded-lg px-3 py-1.5 text-[11px] font-medium text-google-blue">
+                            Disusun &amp; diterbitkan oleh <strong>Budi Gunawan Sutomo</strong>
+                        </span>
+                        <button
+                            id="btn-home-screen"
+                            type="button"
+                            class="inline-flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-google-textPrimary border border-slate-300 rounded-lg px-3 py-1.5 text-[11px] font-bold transition cursor-pointer"
+                        >
+                            <span>📲</span>
+                            <span>Pasang ke Home Screen</span>
+                        </button>
                     </div>
                 </div>
 
@@ -395,6 +411,7 @@
     <a href="https://wa.me/6282261742202?text=Halo%20Budi,%20saya%20ingin%20konsultasi%20mengenai%20perpajakan%20dan%20layanan%20Anda." 
        target="_blank" 
        rel="noopener noreferrer"
+       onclick="catatKlikWA('floating_wa')"
        class="whatsapp-float fixed bottom-6 right-6 z-50 bg-emerald-500 hover:bg-emerald-600 text-white p-3.5 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-emerald-300"
        title="Hubungi Budi Gunawan Sutomo via WhatsApp">
         <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24">
@@ -402,9 +419,38 @@
         </svg>
     </a>
 
-    <!-- Script JavaScript untuk Alarm & Kalkulator -->
+    <!-- Helper Tracking Klik (Opsional ke Google Sheets Web App) -->
+    <script>
+        const WA_LOG_URL = ''; // Isi URL Web App Google Apps Script bila ingin mencatat klik ke Google Sheets
+
+        function catatKlikWA(labelTombol) {
+            if (!WA_LOG_URL) return;
+            const payload = JSON.stringify({
+                page: window.location.pathname,
+                button: labelTombol,
+                agent: navigator.userAgent
+            });
+
+            fetch(WA_LOG_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                keepalive: true,
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: payload
+            }).catch(function () {});
+        }
+    </script>
+
+    <!-- Script JavaScript untuk PWA, Alarm, Kalkulator, & Pasang ke Home Screen -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // --- 0. REGISTRASI SERVICE WORKER (PWA) ---
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", function() {
+                    navigator.serviceWorker.register("/sw.js").catch(function() {});
+                });
+            }
+
             // --- 1. ALARM PAJAK OTOMATIS ---
             const now = new Date();
             const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -476,13 +522,12 @@
 
             function updateDropdownBehaviors() {
                 const type = calcType.value;
-                // Aturan Dead Button: Opsi penghitungan 50% dari bruto hanya aktif untuk PPh Pasal 23 Jasa
                 if (type === 'pph23_jasa') {
                     calcBrutoOption.disabled = false;
                     infoDeadButton.classList.add('hidden');
                 } else {
                     calcBrutoOption.value = 'normal';
-                    calcBrutoOption.disabled = true;  // Dead Button / Disabled
+                    calcBrutoOption.disabled = true;
                     infoDeadButton.classList.remove('hidden');
                 }
             }
@@ -502,7 +547,6 @@
                 let rateDesc = "";
 
                 if (type === 'pph21') {
-                    // Simulasi perhitungan PPh 21 TER / Lapis awal Pasal 17 (5%)
                     baseRate = 0.05;
                     rateDesc = "Tarif Efektif Rata-rata (TER) / Lapis 1 Pasal 17 (5%)";
                 } else if (type === 'umkm') {
@@ -526,16 +570,15 @@
                     rateDesc = "Tarif Final 10%";
                 }
 
-                // Penyesuaian tarif berdasarkan NPWP
                 if (npwpStatus === 'tidak') {
                     if (type.startsWith('pph23')) {
-                        baseRate = baseRate * 2; // Naik 100% lebih tinggi
+                        baseRate = baseRate * 2;
                         rateDesc += " (Tanpa NPWP: Naik 100% menjadi " + (baseRate * 100) + "%)";
                     } else if (type === 'pph21') {
-                        baseRate = baseRate * 1.2; // Pasal 21 tanpa NPWP naik 20%
+                        baseRate = baseRate * 1.2;
                         rateDesc += " (Tanpa NPWP: Naik 20% menjadi " + (baseRate * 100) + "%)";
                     } else if (type === 'umkm') {
-                        baseRate = baseRate * 2; // UMKM tanpa NPWP naik 100% menjadi 1%
+                        baseRate = baseRate * 2;
                         rateDesc += " (Tanpa NPWP: Naik 100% menjadi 1%)";
                     } else {
                         rateDesc += " (Status NPWP tidak berpengaruh pada jenis pajak ini)";
@@ -574,9 +617,51 @@
                 calculateTax();
             });
 
-            // Inisialisasi awal
             updateDropdownBehaviors();
             calculateTax();
+
+            // --- 3. TOMBOL PASANG KE HOME SCREEN ---
+            const btnHomeScreen = document.getElementById("btn-home-screen");
+            if (btnHomeScreen) {
+                let deferredPrompt = null;
+                const isStandalone =
+                    window.matchMedia("(display-mode: standalone)").matches ||
+                    window.navigator.standalone === true;
+
+                if (isStandalone) {
+                    btnHomeScreen.style.display = "none";
+                } else {
+                    window.addEventListener("beforeinstallprompt", function(e) {
+                        e.preventDefault();
+                        deferredPrompt = e;
+                    });
+
+                    btnHomeScreen.addEventListener("click", async function() {
+                        if (deferredPrompt) {
+                            deferredPrompt.prompt();
+                            const choice = await deferredPrompt.userChoice;
+                            if (choice && choice.outcome === "accepted") {
+                                btnHomeScreen.style.display = "none";
+                                catatKlikWA("pasang_home_screen");
+                            }
+                            deferredPrompt = null;
+                            return;
+                        }
+
+                        const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
+                        if (isIos) {
+                            alert("Di iPhone/Safari: ketuk ikon Bagikan (kotak panah ke atas) lalu pilih 'Tambah ke Layar Utama'.");
+                        } else {
+                            alert("Ketuk menu titik tiga (⋮) di browser lalu pilih 'Instal aplikasi' atau 'Tambahkan ke Layar utama'.");
+                        }
+                    });
+
+                    window.addEventListener("appinstalled", function() {
+                        btnHomeScreen.style.display = "none";
+                        deferredPrompt = null;
+                    });
+                }
+            }
         });
     </script>
 </body>
