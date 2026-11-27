@@ -142,17 +142,23 @@
                             class="inline-flex items-center gap-1.5 bg-google-blue hover:bg-blue-700 text-white rounded-lg px-3.5 py-2 text-xs font-bold shadow-xs transition cursor-pointer"
                         >
                             <span>📲</span>
-                            <span>Pasang ke Home Screen</span>
+                            <span>Instal</span>
+                        </button>
+                        <button
+                            id="btn-download-ics"
+                            type="button"
+                            class="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg px-3.5 py-2 text-xs font-bold shadow-xs transition cursor-pointer"
+                        >
+                            <span>📅</span>
+                            <span>Unduh Kalender (.ics)</span>
                         </button>
                     </div>
                     <div
                         id="install-quick-help"
-                        class="hidden mt-2.5 p-3.5 rounded-xl bg-blue-50 border border-blue-200 text-xs text-google-textPrimary leading-relaxed"
+                        class="hidden mt-2.5 px-3.5 py-2.5 rounded-xl bg-blue-50 border border-blue-200 text-xs text-google-textPrimary"
                     >
-                        <div class="flex items-start justify-between gap-2">
-                            <p id="install-quick-text">
-                                Klik ikon pasang di bilah alamat browser atau buka menu browser lalu pilih <strong>Install / Add to Home Screen</strong>.
-                            </p>
+                        <div class="flex items-center justify-between gap-2">
+                            <p id="install-quick-text">Buka menu browser untuk menginstal.</p>
                             <button
                                 id="close-install-help"
                                 type="button"
@@ -585,7 +591,7 @@
         }
     </script>
 
-    <!-- Script JavaScript untuk PWA, Alarm, Kalkulator, Pasang ke Home Screen, & Komentar -->
+    <!-- Script JavaScript untuk PWA, Alarm, Kalkulator, Instal, Kalender .ics, & Komentar -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             // --- 0. REGISTRASI SERVICE WORKER (PWA) ---
@@ -891,7 +897,7 @@
             updateFormControls();
             calculateTax();
 
-            // --- 3. TOMBOL PASANG KE HOME SCREEN (1-2 KLIK) ---
+            // --- 3. TOMBOL INSTAL APLIKASI WEB (PWA) ---
             const btnHomeScreen = document.getElementById("btn-home-screen");
             const installQuickHelp = document.getElementById("install-quick-help");
             const installQuickText = document.getElementById("install-quick-text");
@@ -924,7 +930,7 @@
                                     installQuickHelp.classList.add("hidden");
                                 }
                                 if (typeof catatKlikWA === "function") {
-                                    catatKlikWA("pasang_home_screen");
+                                    catatKlikWA("instal_aplikasi_web");
                                 }
                             }
                             deferredPrompt = null;
@@ -932,10 +938,7 @@
                         }
 
                         if (installQuickHelp && installQuickText) {
-                            const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
-                            installQuickText.innerHTML = isIos
-                                ? "Di Safari iPhone/iPad: ketuk tombol <strong>Share</strong> lalu pilih <strong>Add to Home Screen</strong>."
-                                : "Klik ikon install di ujung bilah alamat atau buka menu browser (<strong>⋮</strong>) lalu pilih <strong>Install</strong> / <strong>Add to Home Screen</strong>.";
+                            installQuickText.textContent = "Buka menu browser untuk menginstal.";
                             installQuickHelp.classList.toggle("hidden");
                         }
                     });
@@ -954,6 +957,81 @@
                         deferredPrompt = null;
                     });
                 }
+            }
+
+            // --- 3B. TOMBOL UNDUH KALENDER (.ICS) ---
+            const btnDownloadIcs = document.getElementById("btn-download-ics");
+            if (btnDownloadIcs) {
+                btnDownloadIcs.addEventListener("click", function() {
+                    const icsContent = [
+                        "BEGIN:VCALENDAR",
+                        "VERSION:2.0",
+                        "PRODID:-//alarmpajak.com//Kalender Jatuh Tempo Pajak 2026//ID",
+                        "CALSCALE:GREGORIAN",
+                        "METHOD:PUBLISH",
+                        "X-WR-CALNAME:Alarm Pajak Bulanan",
+                        "X-WR-TIMEZONE:Asia/Jakarta",
+                        "BEGIN:VEVENT",
+                        "UID:alarmpajak-tgl15@alarmpajak.com",
+                        "DTSTAMP:20261127T072700Z",
+                        "DTSTART;TZID=Asia/Jakarta:20261215T080000",
+                        "DTEND;TZID=Asia/Jakarta:20261215T083000",
+                        "RRULE:FREQ=MONTHLY;BYMONTHDAY=15",
+                        "SUMMARY:Alarm Pajak (Tgl 15): Setor PPh Masa & UMKM",
+                        "DESCRIPTION:Batas penyetoran PPh 21/26, PPh 22, PPh 23, PPh 4(2) Final, Angsuran PPh 25, dan PPh Final UMKM 0,5% (PMK 81/2024).",
+                        "BEGIN:VALARM",
+                        "TRIGGER:-P1D",
+                        "ACTION:DISPLAY",
+                        "DESCRIPTION:Besok tanggal 15: batas setor PPh Masa & UMKM.",
+                        "END:VALARM",
+                        "END:VEVENT",
+                        "BEGIN:VEVENT",
+                        "UID:alarmpajak-tgl20@alarmpajak.com",
+                        "DTSTAMP:20261127T072700Z",
+                        "DTSTART;TZID=Asia/Jakarta:20261220T080000",
+                        "DTEND;TZID=Asia/Jakarta:20261220T083000",
+                        "RRULE:FREQ=MONTHLY;BYMONTHDAY=20",
+                        "SUMMARY:Alarm Pajak (Tgl 20): Upload e-Faktur & Lapor SPT PPh",
+                        "DESCRIPTION:Batas upload e-Faktur (PER-11/PJ/2025) dan pelaporan SPT Masa Unifikasi / PPh Pasal 21/26.",
+                        "BEGIN:VALARM",
+                        "TRIGGER:-P1D",
+                        "ACTION:DISPLAY",
+                        "DESCRIPTION:Besok tanggal 20: batas upload e-Faktur & lapor SPT PPh.",
+                        "END:VALARM",
+                        "END:VEVENT",
+                        "BEGIN:VEVENT",
+                        "UID:alarmpajak-akhirbulan@alarmpajak.com",
+                        "DTSTAMP:20261127T072700Z",
+                        "DTSTART;TZID=Asia/Jakarta:20261231T080000",
+                        "DTEND;TZID=Asia/Jakarta:20261231T083000",
+                        "RRULE:FREQ=MONTHLY;BYMONTHDAY=-1",
+                        "SUMMARY:Alarm Pajak (Akhir Bulan): Setor & Lapor SPT Masa PPN",
+                        "DESCRIPTION:Batas penyetoran PPN Kurang Bayar dan pelaporan SPT Masa PPN masa pajak sebelumnya.",
+                        "BEGIN:VALARM",
+                        "TRIGGER:-P1D",
+                        "ACTION:DISPLAY",
+                        "DESCRIPTION:Akhir bulan: batas penyetoran & pelaporan SPT Masa PPN.",
+                        "END:VALARM",
+                        "END:VEVENT",
+                        "END:VCALENDAR"
+                    ].join("\r\n");
+
+                    const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
+                    const url = URL.createObjectURL(blob);
+                    const link = document.createElement("a");
+                    link.href = url;
+                    link.download = "alarmpajak-2026.ics";
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    setTimeout(function() {
+                        URL.revokeObjectURL(url);
+                    }, 1000);
+
+                    if (typeof catatKlikWA === "function") {
+                        catatKlikWA("unduh_kalender_ics");
+                    }
+                });
             }
 
             // --- 4. KOMENTAR SARAN & KRITIK (PERSISTEN VIA LOCALSTORAGE, 5 CATATAN AWAL) ---
