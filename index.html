@@ -10,10 +10,13 @@
     <meta name="keywords" content="alarm pajak, alarmpajak.com, kalkulator pajak online, coretax djponline, pph 21 desember, pajak dokter, pajak hadiah, pajak bunga, pph umkm, ppn 12%, budi gunawan sutomo">
     <meta name="author" content="Budi Gunawan Sutomo">
     
-    <!-- Open Graph / Social Media SEO -->
+    <!-- Favicon & Open Graph / Social Media SEO -->
+    <link rel="icon" type="image/png" href="https://radikbud.github.io/pajak/icon-192.png">
     <meta property="og:title" content="Alarm Pajak & Kalkulator Pajak Cepat 2026 — alarmpajak.com">
     <meta property="og:description" content="Pengingat otomatis jatuh tempo penyetoran, pelaporan, dan kalkulator pajak era Coretax.">
     <meta property="og:type" content="website">
+    <meta property="og:image" content="https://radikbud.github.io/pajak/icon-192.png">
+    <meta property="og:image:alt" content="Logo Alarm Pajak 2026">
 
     <!-- PWA Meta & Manifest -->
     <link rel="manifest" href="/pajak/manifest.json">
@@ -163,11 +166,18 @@
 
                 <!-- Kalkulator Pajak Cepat -->
                 <section class="space-y-3.5 bg-slate-50 border border-slate-200 p-4 rounded-2xl">
-                    <div class="flex items-center justify-between border-b border-slate-200 pb-2.5">
+                    <div class="flex items-center justify-between gap-2 border-b border-slate-200 pb-2.5">
                         <h3 class="text-sm font-bold uppercase tracking-wide text-google-textPrimary flex items-center">
                             <span class="w-2.5 h-2.5 rounded-full bg-indigo-600 mr-2"></span>
                             🧮 Kalkulator Pajak Cepat
                         </h3>
+                        <a href="https://radikbud.github.io/kalkulatorbisnis/"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           onclick="catatKlikWA('buka_kalkulator_bisnis')"
+                           class="text-[11px] font-bold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 px-2.5 py-1 rounded-full shrink-0 transition">
+                            Kalkulator Bisnis ↗
+                        </a>
                     </div>
                     <div class="space-y-3.5 pt-1">
                         <!-- Pilih Jenis Pajak -->
@@ -468,81 +478,7 @@
                     </div>
                 </section>
 
-                <!-- Bagian 3: Penawaran Jasa Pembuatan Website / Landing Page + Portofolio Pilihan -->
-                <section class="pt-3">
-                    <div class="p-4 rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-900 to-slate-800 text-white shadow-sm space-y-4">
-                        <div>
-                            <span class="inline-block text-xs font-bold uppercase tracking-wide bg-blue-500/20 text-blue-300 border border-blue-400/30 px-2.5 py-0.5 rounded-full">
-                                Jasa Landing Page &amp; Sistem Booking
-                            </span>
-                            <h3 class="text-base font-bold text-white mt-2 leading-snug">
-                                Butuh Landing Page, Kalkulator, atau Form Reservasi Bisnis?
-                            </h3>
-                        </div>
-
-                        <p class="text-xs text-slate-300 leading-relaxed">
-                            Tampilan rapi di HP, ringan diakses, tanpa beban biaya server bulanan mahal, dan langsung terhubung ke WhatsApp.
-                        </p>
-
-                        <!-- Portofolio Pilihan (3 Contoh Terbaik) -->
-                        <div class="space-y-2.5 pt-0.5">
-                            <p class="text-xs font-bold uppercase tracking-wide text-slate-400">Contoh Hasil Kerja:</p>
-                            
-                            <div class="grid grid-cols-1 gap-2.5">
-                                <!-- Portofolio 1: senyumdental.id -->
-                                <a href="https://senyumdental.id" target="_blank" rel="noopener noreferrer" class="block p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition">
-                                    <div class="flex items-center justify-between gap-2">
-                                        <span class="text-sm font-bold text-white">1. Senyum Dental (senyumdental.id)</span>
-                                        <span class="text-xs text-blue-300 font-semibold shrink-0">Lihat Web ↗</span>
-                                    </div>
-                                    <p class="text-xs text-slate-300 mt-1 leading-relaxed">
-                                        Landing page &amp; sistem reservasi jadwal multi-cabang klinik gigi langsung ke WhatsApp.
-                                    </p>
-                                </a>
-
-                                <!-- Portofolio 2: /bantal/ -->
-                                <a href="https://radikbud.github.io/bantal/" target="_blank" rel="noopener noreferrer" class="block p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition">
-                                    <div class="flex items-center justify-between gap-2">
-                                        <span class="text-sm font-bold text-white">2. Katalog &amp; Penawaran Produk (/bantal)</span>
-                                        <span class="text-xs text-blue-300 font-semibold shrink-0">Lihat Web ↗</span>
-                                    </div>
-                                    <p class="text-xs text-slate-300 mt-1 leading-relaxed">
-                                        Halaman penawaran produk yang terstruktur untuk promosi dan pemesanan langsung.
-                                    </p>
-                                </a>
-
-                                <!-- Portofolio 3: /novrizal/ -->
-                                <a href="https://radikbud.github.io/novrizal/" target="_blank" rel="noopener noreferrer" class="block p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition">
-                                    <div class="flex items-center justify-between gap-2">
-                                        <span class="text-sm font-bold text-white">3. Halaman Profil &amp; Jasa (/novrizal)</span>
-                                        <span class="text-xs text-blue-300 font-semibold shrink-0">Lihat Web ↗</span>
-                                    </div>
-                                    <p class="text-xs text-slate-300 mt-1 leading-relaxed">
-                                        Halaman profil ringkas dan profesional untuk personal branding maupun penyedia jasa.
-                                    </p>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Estimasi Harga & CTA WhatsApp -->
-                        <div class="pt-3 border-t border-white/10 flex items-center justify-between gap-3">
-                            <div>
-                                <span class="block text-xs text-slate-400 uppercase">Estimasi Pembuatan</span>
-                                <span class="text-sm font-extrabold text-amber-300">Mulai Rp 1,5 Juta</span>
-                            </div>
-                            <a href="https://wa.me/6282261742202?text=Halo%20Budi,%20saya%20lihat%20contoh%20web%20di%20alarmpajak.com%20dan%20ingin%20tanya%20pembuatan%20landing%20page%20/%20sistem%20reservasi."
-                               target="_blank"
-                               rel="noopener noreferrer"
-                               onclick="catatKlikWA('cta_buat_website')"
-                               class="inline-flex items-center gap-1.5 bg-google-blue hover:bg-blue-600 text-white text-xs font-bold px-3.5 py-2.5 rounded-xl shadow-sm transition shrink-0">
-                                <span>💬</span>
-                                <span>Tanya via WhatsApp</span>
-                            </a>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Bagian 4: Kotak Kolom Komentar Saran & Kritik (Tetap Tampil di Perangkat User) -->
+                <!-- Bagian 3: Kotak Kolom Komentar Saran & Kritik (5 Catatan, Tanpa Tombol Hapus Pengunjung) -->
                 <section class="space-y-3.5 bg-slate-50 border border-slate-200 p-4 rounded-2xl">
                     <div class="flex items-center justify-between border-b border-slate-200 pb-2.5">
                         <h3 class="text-sm font-bold uppercase tracking-wide text-google-textPrimary flex items-center">
@@ -1020,8 +956,8 @@
                 }
             }
 
-            // --- 4. KOMENTAR SARAN & KRITIK (PERSISTEN VIA LOCALSTORAGE) ---
-            const STORAGE_KEY = "alarmpajak_saran_kritik_v1";
+            // --- 4. KOMENTAR SARAN & KRITIK (PERSISTEN VIA LOCALSTORAGE, 5 CATATAN AWAL) ---
+            const STORAGE_KEY = "alarmpajak_saran_kritik_v2";
             const feedbackForm = document.getElementById("feedbackForm");
             const fbName = document.getElementById("fbName");
             const fbType = document.getElementById("fbType");
@@ -1044,6 +980,27 @@
                     type: "Kritik / Koreksi",
                     text: "Bagus sudah ada hitungan PPh 21 bulan Desember, tinggal disesuaikan dengan slip potongan masing-masing pegawai.",
                     date: "Contoh Catatan"
+                },
+                {
+                    id: "seed-3",
+                    name: "Mas Dimas",
+                    type: "Saran",
+                    text: "Kalkulator cepatnya praktis buat cek estimasi PPh 23 jasa dan PPN sebelum bikin invoice.",
+                    date: "Contoh Catatan"
+                },
+                {
+                    id: "seed-4",
+                    name: "Bu Rina",
+                    type: "Saran",
+                    text: "Ringkasan jadwal setor dan lapor di satu layar HP enak dibaca saat mengecek tenggat bulanan.",
+                    date: "Contoh Catatan"
+                },
+                {
+                    id: "seed-5",
+                    name: "Pak Teguh",
+                    type: "Kritik / Koreksi",
+                    text: "Tampilan sudah ringan dan jelas, semoga pasal-pasal turunan Coretax tetap diperbarui berkala.",
+                    date: "Contoh Catatan"
                 }
             ];
 
@@ -1064,7 +1021,7 @@
                         return defaultComments;
                     }
                     const parsed = JSON.parse(raw);
-                    return Array.isArray(parsed) ? parsed : [];
+                    return Array.isArray(parsed) ? parsed : defaultComments;
                 } catch (e) {
                     return defaultComments;
                 }
@@ -1097,21 +1054,11 @@
 
                     return `
                         <div class="p-3.5 rounded-xl bg-white border border-slate-200 space-y-1.5">
-                            <div class="flex items-center justify-between gap-2">
-                                <div class="flex items-center gap-2 min-w-0">
-                                    <span class="text-xs font-bold text-google-textPrimary truncate">${escapeHtml(item.name || "Anonim")}</span>
-                                    <span class="text-[11px] font-bold px-2 py-0.5 rounded-full border shrink-0 ${badgeClass}">
-                                        ${escapeHtml(item.type)}
-                                    </span>
-                                </div>
-                                <button
-                                    type="button"
-                                    onclick="hapusKomentar('${escapeHtml(item.id)}')"
-                                    class="text-[11px] text-slate-400 hover:text-rose-600 font-medium cursor-pointer shrink-0"
-                                    title="Hapus catatan ini"
-                                >
-                                    Hapus
-                                </button>
+                            <div class="flex items-center gap-2 min-w-0">
+                                <span class="text-xs font-bold text-google-textPrimary truncate">${escapeHtml(item.name || "Anonim")}</span>
+                                <span class="text-[11px] font-bold px-2 py-0.5 rounded-full border shrink-0 ${badgeClass}">
+                                    ${escapeHtml(item.type)}
+                                </span>
                             </div>
                             <p class="text-xs text-google-textPrimary leading-relaxed whitespace-pre-line">${escapeHtml(item.text)}</p>
                             <p class="text-[11px] text-slate-400">${escapeHtml(item.date)}</p>
@@ -1119,12 +1066,6 @@
                     `;
                 }).join("");
             }
-
-            window.hapusKomentar = function(id) {
-                const items = loadComments().filter(item => item.id !== id);
-                saveComments(items);
-                renderComments();
-            };
 
             feedbackForm.addEventListener("submit", function(e) {
                 e.preventDefault();
